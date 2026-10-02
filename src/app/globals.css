@@ -1,26 +1,19 @@
+@import url("https://googleapis.com");
+
 @import "tailwindcss";
+@plugin "daisyui";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* color palette */
+  /* primary */
+  --color-primary-10: #6D5A52;   /* untuk font-label */
+  --color-primary-50: #fbf9f5;   /* untuk background layout */
+  --color-primary-100: #f5f3ef;  /* untuk background layout */
+  --color-primary-150: #553722;  /* untuk font-headline */
+  --color-primary-200: #F5F3EF;  /* DIUBAH KE 200 AGAR TIDAK DUPLIKAT (untuk container kecil) */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* font family */
+  --font-headline: "Playfair Display", serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-label: "Space Grotesk", sans-serif;
 }
