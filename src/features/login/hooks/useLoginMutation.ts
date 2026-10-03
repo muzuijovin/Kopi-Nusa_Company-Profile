@@ -1,22 +1,35 @@
 "use cliet";
 
-import { loginApi } from "@/api/loginApi";
+import { LoginApi } from "@/api/loginApi";
 import { LoginSchema } from "@/features/validation/login-schema";
+import { useAuthStore } from "@/store/useAuthStore";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 export function UseLoginMutation(getValues: () => LoginSchema) {
   const router = useRouter();
+  const { setUserAuthStore } = useAuthStore();
 
   const { mutate: loginMutation, isPending } = useMutation({
     mutationFn: async () => {
-      const { username, email, password } = getValues();
-      await loginApi({username, email, password });
+      const { email, password } = getValues();
+      return await LoginApi({ email, password });
     },
     onSuccess(res: any) {
       toast.success("registration successfull");
-      router.push("/admin/login");
+      setUserAuthStore(
+        res?.data?.username,
+        res?.data?.email,
+        res?.data?.objectId,
+      );
+
+      // 1. SET PENANDA LOGIN DI SINI
+      localStorage.setItem("is_logged_in", "true");
+
+      // 2. REFRESH ROUTER AGAR NAVBAR MEMBACA STATE TERBARU
+      router.refresh();
+      router.push("/");
     },
     onError(error: any) {
       toast.error(error?.response?.data?.message);

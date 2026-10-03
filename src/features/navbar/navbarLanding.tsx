@@ -1,9 +1,10 @@
 import { navItems } from "@/data/data";
+import { FaUser } from "react-icons/fa";
 
-export function NavbarUserSection() {
+export function NavbarLandingSection() {
   return (
     <>
-      <nav className="navbar bg-[#ffffff] shadow-md lg:px-12">
+      <nav className="navbar bg-[#ffffff] shadow-md lg:px-6">
         {/* start */}
         <div className="navbar-start">
           <div className="dropdown">
@@ -34,19 +35,19 @@ export function NavbarUserSection() {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a href="">Beranda</a>
+                <a href="/">Beranda</a>
               </li>
               <li>
-                <a href="">Tentang Kami</a>
+                <a href="/about-us">Tentang Kami</a>
               </li>
               <li>
-                <a href="">Layanan & Produk</a>
+                <a href="/products-services">Layanan & Produk</a>
               </li>
               <li>
-                <a href="">Tim Kami</a>
+                <a href="/teams">Tim Kami</a>
               </li>
               <li>
-                <a href="">Blog</a>
+                <a href="/blog-list">Blog</a>
               </li>
             </ul>
           </div>
@@ -78,7 +79,7 @@ export function NavbarUserSection() {
               </a>
             );
           })}
-          <a href="" className="ml-4 flex gap-2">
+          <a href="/admin/login" className="ml-4 flex gap-2">
             <button className="btn font-label bg-[#F5F3EF] border-none shadow-none hover:shadow-sm rounded-3xl">
               <img src="/navbar-gembok.svg" alt="gembok" />
               <span>TULIS BLOG</span>
@@ -87,12 +88,17 @@ export function NavbarUserSection() {
         </div>
         {/* end */}
         <div className="navbar-end">
-          <h1 className="font-body font-semibold text-xs text-shadow-black">
-            jovin nanti di edit
-          </h1>
+          <div className="flex flex-col items-center gap-1">
+             <h1 className="hidden font-body font-semibold text-xs text-shadow-black">jovin nanti di edit</h1>
+          </div>
+            <a href="/login" className="ml-4 gap-2 ">
+              <button className="btn font-label bg-[#F5F3EF] border-none shadow-none hover:shadow-sm rounded-3xl py-1">
+                <span>Masuk</span>
+              </button>
+            </a>
 
           <div className="rounded-full w-9 h-9 overflow-hidden flex justify-center items-center bg-slate-200 ml-2">
-            <img src="/foto-jovin-najwan.jpg" alt="foto jovin najwan" />
+            <FaUser />
           </div>
         </div>
       </nav>

@@ -1,27 +1,42 @@
 "use client";
 
-import { loginSchema, LoginSchema } from "@/features/validation/login-schema";
+import {
+  registerSchema,
+  RegisterSchema,
+} from "@/features/validation/register-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { UseLoginMutation } from "../hooks/useLoginMutation";
+import { UseRegisterMutation } from "../hooks/useRegisterMutation";
 
-export function FormLogin() {
+export function FormRegister() {
   const {
     register,
     handleSubmit,
     formState: { errors },
     getValues,
-  } = useForm<LoginSchema>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<RegisterSchema>({
+    resolver: zodResolver(registerSchema),
   });
-
-  const { loginMutation, isPending } = UseLoginMutation(getValues);
-
+  const { registerMutation, isPending } = UseRegisterMutation(getValues);
   return (
     <>
-      <form onSubmit={handleSubmit(() => loginMutation())} className="mt-5">
+      <form onSubmit={handleSubmit(() => registerMutation())} className="mt-5">
         <fieldset className="fieldset w-full">
-          <legend className="fieldset-legend">Email</legend>
+          <legend className="fieldset-legend font-label font-medium text-xs text-[#1B1C1A]">
+            Username
+          </legend>
+          <input
+            type="text"
+            className="input w-full"
+            placeholder="Type username here"
+            {...register("username")}
+          />
+          <p className="label text-red-500">{errors?.username?.message}</p>
+        </fieldset>
+        <fieldset className="fieldset w-full">
+          <legend className="fieldset-legend font-label font-medium text-xs text-[#1B1C1A]">
+            Email
+          </legend>
           <input
             type="email"
             className="input w-full"
@@ -31,14 +46,9 @@ export function FormLogin() {
           <p className="label text-red-500">{errors?.email?.message}</p>
         </fieldset>
         <fieldset className="fieldset w-full">
-          <div className="flex justify-between items-center">
-            <legend className="fieldset-legend">Password</legend>
-            <a className="">
-              <h1 className="text-[553722] text-[10px] font-label font-bold cursor-pointer hover:underline">
-                Lupa Kata Sandi?
-              </h1>
-            </a>
-          </div>
+          <legend className="fieldset-legend font-label font-medium text-xs text-[#1B1C1A]">
+            Password
+          </legend>
           <input
             type="password"
             className="input w-full"
@@ -53,7 +63,7 @@ export function FormLogin() {
             disabled={isPending}
             className="btn btn-success w-full font-label font-semibold text-[14px] text-slate-100 bg-[#6F4E37] shadow-none border-none"
           >
-            Masuk
+            Registrasi
           </button>
         </div>
       </form>

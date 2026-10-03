@@ -1,12 +1,12 @@
-import { NavbarSection } from "@/components/navbar";
 import { FooterSection } from "@/components/footer";
-import { MainLandingPage } from "@/features/landing/components/main-landing-page";
+import { NavbarSection } from "@/components/navbar";
+import MainLandingPage from "./(user)/landing-user/page";
 
 export default function LandingPage() {
   return (
     <>
       <NavbarSection />
-      <MainLandingPage />
+      <MainLandingPage/>
       <FooterSection />
     </>
   );

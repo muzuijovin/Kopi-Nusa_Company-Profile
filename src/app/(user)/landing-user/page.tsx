@@ -1,4 +1,4 @@
-export default function LandingPageUser() {
+export default function MainLandingPage() {
   return (
     <>
       <div>halo</div>
