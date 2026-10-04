@@ -7,8 +7,12 @@ import {
   LoginAdminSchema,
 } from "@/features/validation/login-admin-schema";
 import { UseLoginAdminMutation } from "../hooks/useLoginAdminMutation";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export function FormLoginAdmin() {
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -22,7 +26,10 @@ export function FormLoginAdmin() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(() => loginAdminMutation())} className="mt-5">
+      <form
+        onSubmit={handleSubmit(() => loginAdminMutation())}
+        className="mt-5"
+      >
         <fieldset className="fieldset w-full">
           <legend className="fieldset-legend font-label font-medium text-xs text-[#1B1C1A]">
             Email
@@ -39,13 +46,34 @@ export function FormLoginAdmin() {
           <legend className="fieldset-legend font-label font-medium text-xs text-[#1B1C1A]">
             Password
           </legend>
-          <input
-            type="password"
-            className="input w-full"
-            placeholder="Type password here"
-            {...register("password")}
-          />
-          <p className="label text-red-500">{errors?.password?.message}</p>
+
+          {/* Pembungkus input dibuat relative agar posisi tombol mata bisa pas di kanan dalam input */}
+          <div className="relative w-full">
+            <input
+              type={showPassword ? "text" : "password"} // Mengubah type input secara dinamis
+              className="input w-full pr-12" // Diberi pr-12 (padding-right) agar teks password tidak menabrak ikon mata
+              placeholder="Type password here"
+              {...register("password")}
+            />
+
+            {/* Tombol Toggle Mata daisyUI / Tailwind */}
+            <button
+              type="button" // Wajib type="button" agar tidak memicu submit form secara tidak sengaja
+              className="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-500 hover:text-gray-700 focus:outline-none"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <FaEyeSlash className="w-5 h-5" />
+              ) : (
+                <FaEye className="w-5 h-5" />
+              )}
+            </button>
+          </div>
+
+          {/* Pesan Error Validasi */}
+          <p className="label text-red-500 text-xs mt-1">
+            {errors?.password?.message}
+          </p>
         </fieldset>
 
         <div className="flex justify-center mt-10">
