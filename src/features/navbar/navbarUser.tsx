@@ -8,12 +8,12 @@ export function NavbarUserSection() {
     localStorage.clear();
 
     // Arahkan user ke halaman login atau beranda
-    window.location.href = "/";
+    window.location.href = "/login";
   };
 
   return (
     <>
-      <nav className="navbar bg-[#ffffff] shadow-md lg:px-6">
+      <nav className="navbar bg-[#ffffff] shadow-md lg:px-6 z-70">
         {/* start */}
         <div className="navbar-start">
           <div className="dropdown">
@@ -71,7 +71,7 @@ export function NavbarUserSection() {
               <h1 className="font-bold font-headline text-[22px] text-primary-150 cursor-pointer">
                 Kopi Nusa
               </h1>
-              <h2 className="font-label font-bold text-[10px] text-primary-10 cursor-pointer">
+              <h2 className="font-label font-bold text-[8px] text-primary-10 cursor-pointer">
                 CITA RASA NUSANTARA DI SETIAP SEDUHAN
               </h2>
             </div>
@@ -88,7 +88,7 @@ export function NavbarUserSection() {
               </a>
             );
           })}
-          <a href="" className="ml-4 flex gap-2">
+          <a href="/admin/login" className="ml-4 flex gap-2">
             <button className="btn font-label bg-[#F5F3EF] border-none shadow-none hover:shadow-sm rounded-3xl">
               <img src="/navbar-gembok.svg" alt="gembok" />
               <span>TULIS BLOG</span>

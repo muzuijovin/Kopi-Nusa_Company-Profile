@@ -22,7 +22,7 @@ export function FormLoginAdmin() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(() => loginAdminMutation())}>
+      <form onSubmit={handleSubmit(() => loginAdminMutation())} className="mt-5">
         <fieldset className="fieldset w-full">
           <legend className="fieldset-legend font-label font-medium text-xs text-[#1B1C1A]">
             Email
@@ -33,7 +33,7 @@ export function FormLoginAdmin() {
             placeholder="Type email here"
             {...register("email")}
           />
-          <p className="label">{errors?.email?.message}</p>
+          <p className="label text-red-500">{errors?.email?.message}</p>
         </fieldset>
         <fieldset className="fieldset w-full">
           <legend className="fieldset-legend font-label font-medium text-xs text-[#1B1C1A]">
@@ -45,14 +45,15 @@ export function FormLoginAdmin() {
             placeholder="Type password here"
             {...register("password")}
           />
-          <p className="label">{errors?.password?.message}</p>
+          <p className="label text-red-500">{errors?.password?.message}</p>
         </fieldset>
 
-        <div className="flex justify-center">
-          <button disabled={isPending} className="btn bg-[#6F4E37] rounded-md ">
-            <h1 className="text-[#fffff] text-[14px] font-label font-medium">
-              Masuk
-            </h1>
+        <div className="flex justify-center mt-10">
+          <button
+            disabled={isPending}
+            className="btn btn-success w-full font-label font-semibold text-[14px] text-slate-100 bg-[#6F4E37] shadow-none border-none"
+          >
+            Masuk Sebagai Admin
           </button>
         </div>
       </form>

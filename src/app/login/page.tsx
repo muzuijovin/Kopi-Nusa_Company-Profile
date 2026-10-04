@@ -21,7 +21,7 @@ export default function LoginPage() {
               </div>
             </a>
             {/* tulisan */}
-            <div className="flex gap-2 items-center justify-center bg-[#EFEEEA] rounded-lg shadow-sm mb-3">
+            <div className="flex gap-2 items-center justify-center bg-[#EFEEEA] rounded-lg shadow-sm mb-3 py-1 px-5">
               <GoDotFill className="w-1.5 h-1.5 text-primary-150" />
               <h2 className="font-label font-medium text-xs text-[#5E3407]">
                 KOPI NUSA ROASTERY PORTAL
@@ -33,13 +33,13 @@ export default function LoginPage() {
             </h1>
 
             <h3 className="font-body text-[15px] text-[#50453E] mb-6">
-              Akses akun Anda untuk menulis artikel blog, mengelola pesanan
+              Akses akun Anda untuk mengelola pesanan
               wholesale, dan mengakses catatan cupping lab.
             </h3>
           </div>
 
           {/* container */}
-          <div className="w-[40vh] md:w-[50vh] lg:w-[80vh] h-max p-10 bg-[#FFFFFF] rounded-lg shadow-md">
+          <div className="w-[70vh] md:w-[50vh] lg:w-[80vh] h-max p-10 bg-[#FFFFFF] rounded-lg shadow-md">
             {/* login/register */}
             <div className="grid grid-cols-1 gap-2 md:gap-1 md:grid-cols-2 p-0.75 rounded-lg bg-[#EFEEEA] mb-8">
               <a href="/login">
@@ -74,12 +74,12 @@ export default function LoginPage() {
             {/* form input username & email & password */}
             <FormLogin />
 
-            <div className="flex">
-              <h1 className="text-[#50453E] text-[13px] font-body">
+            <div className="flex items-center mt-2">
+              <h1 className="text-[#50453E] text-[10px] font-body">
                 Belum memiliki akun Kopi Nusa?{" "}
               </h1>
-              <a href="">
-                <h1>Daftar Akun Baru</h1>
+              <a href="/register">
+                <h1 className="font-body font-semibold text-[11px] text-primary-150 hover:underline">Daftar Akun Baru</h1>
               </a>
             </div>
           </div>

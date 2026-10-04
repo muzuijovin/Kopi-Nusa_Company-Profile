@@ -62,7 +62,7 @@ export function NavbarLandingSection() {
               <h1 className="font-bold font-headline text-[22px] text-primary-150 cursor-pointer">
                 Kopi Nusa
               </h1>
-              <h2 className="font-label font-bold text-[10px] text-primary-10 cursor-pointer">
+              <h2 className="font-label font-bold text-[8px] text-primary-10 cursor-pointer">
                 CITA RASA NUSANTARA DI SETIAP SEDUHAN
               </h2>
             </div>

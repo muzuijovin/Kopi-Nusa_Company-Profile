@@ -34,15 +34,15 @@ export default function RegisterPage() {
             </h1>
 
             <h3 className="font-body text-[15px] text-[#50453E] mb-6">
-              Akses akun Anda untuk menulis artikel blog, mengelola pesanan
+              Akses akun Anda untuk mengelola pesanan
               wholesale, dan mengakses catatan cupping lab.
             </h3>
           </div>
 
           {/* container */}
-          <div className="w-[40vh] md:w-[50vh] lg:w-[80vh] h-max p-10 bg-[#FFFFFF] rounded-lg shadow-md">
+          <div className="w-[70vh] md:w-[50vh] lg:w-[80vh] h-max p-10 bg-[#FFFFFF] rounded-lg shadow-md">
             {/* login/register */}
-            <div className="grid grid-cols-1 gap-2 md:gap-1 md:grid-cols-2 p-0.75 rounded-lg md:bg-[#EFEEEA] mb-8">
+            <div className="grid grid-cols-1 gap-2 md:gap-1 md:grid-cols-2 p-0.75 rounded-lg bg-[#EFEEEA] mb-8">
               <a href="/login">
                 <div className="flex justify-center items-center rounded-lg hover:shadow-md active:bg-white py-2.5">
                   <div className="flex gap-2">
