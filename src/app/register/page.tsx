@@ -34,8 +34,8 @@ export default function RegisterPage() {
             </h1>
 
             <h3 className="font-body text-[15px] text-[#50453E] mb-6">
-              Akses akun Anda untuk mengelola pesanan
-              wholesale, dan mengakses catatan cupping lab.
+              Akses akun Anda untuk mengelola pesanan wholesale, dan mengakses
+              catatan cupping lab.
             </h3>
           </div>
 
@@ -68,7 +68,8 @@ export default function RegisterPage() {
             {/* kata-kata */}
             <div className="bg-[#F5F3EF] rounded-lg p-4">
               <h1 className="font-body text-[13px] text-[#50453E]">
-                Silakan masukkan kredensial akun Anda untuk mengakses dashboard,
+                Daftarkan diri Anda untuk mendapatkan hak akses penuh ke halaman
+                dashboard.
               </h1>
             </div>
 

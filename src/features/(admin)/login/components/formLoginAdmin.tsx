@@ -51,7 +51,7 @@ export function FormLoginAdmin() {
         <div className="flex justify-center mt-10">
           <button
             disabled={isPending}
-            className="btn btn-success w-full font-label font-semibold text-[14px] text-slate-100 bg-[#6F4E37] shadow-none border-none"
+            className="btn btn-success w-full font-label font-semibold text-[14px] text-slate-100 bg-[#6F4E37] shadow-none border-none hover:opacity-97"
           >
             Masuk Sebagai Admin
           </button>

@@ -67,7 +67,7 @@ export default function LoginPage() {
             {/* kata-kata */}
             <div className="bg-[#F5F3EF] rounded-lg p-4">
               <h1 className="font-body text-[13px] text-[#50453E]">
-                Silakan masukkan kredensial akun Anda untuk mengakses dashboard,
+                Silakan masukkan kredensial akun Anda untuk mengakses dashboard.
               </h1>
             </div>
 
