@@ -11,11 +11,11 @@ export function UseRegisterMutation(getValues: () => RegisterSchema) {
   const { mutate: registerMutation, isPending } = useMutation({
     mutationFn: async () => {
       const { username, email, password } = getValues();
-      return await RegisterApi({username, email, password });
+      return await RegisterApi({ username, email, password });
     },
     onSuccess(res: any) {
+      router.push("/login");
       toast.success("registration successfull");
-      router.push("/landing-user");
     },
     onError(error: any) {
       toast.error(error?.response?.data?.message);

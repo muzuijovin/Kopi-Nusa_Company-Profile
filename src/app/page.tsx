@@ -1,6 +1,5 @@
 "use client";
 
-import { FooterSection } from "@/components/footer";
 import { NavbarSection } from "@/components/navbar";
 import MainLandingPage from "./(user)/landing/page";
 
@@ -8,6 +7,7 @@ import { useAuthStore } from "@/store/useAuthStore";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect } from "react";
+import { FooterSection } from "@/components/footer";
 
 export default function LandingPage() {
   const { objectId, setUserAuthStore } = useAuthStore();
@@ -38,7 +38,7 @@ export default function LandingPage() {
     <>
       <NavbarSection />
       <MainLandingPage />
-      <FooterSection />
+      <FooterSection/>
     </>
   );
 }

@@ -15,7 +15,7 @@ export function UseLoginAdminMutation(getValues: () => LoginAdminSchema) {
       return await LoginAdminApi({ email, password });
     },
     onSuccess(res: any) {
-      toast.success("registration successfull");
+      toast.success("login in admin mode successfull");
 
       router.push("/admin/blog-create");
     },

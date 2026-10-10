@@ -1,6 +1,7 @@
 import QueryProvider from "@/providers/query-providers";
 import type { Metadata } from "next";
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
   title: "Kopi Nusa",
@@ -12,6 +13,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en">
       <body className="bg-[#FDFBF9] text-[#2C1E16] antialiased selection:bg-[#5C3D2E] selection:text-white">
         <QueryProvider>{children}</QueryProvider>
+        <ToastContainer />
       </body>
     </html>
   );

@@ -17,7 +17,6 @@ export function UseLoginMutation(getValues: () => LoginSchema) {
       return await LoginApi({ email, password });
     },
     onSuccess(res: any) {
-      toast.success("registration successfull");
       setUserAuthStore(
         res?.data?.username,
         res?.data?.email,
@@ -30,6 +29,7 @@ export function UseLoginMutation(getValues: () => LoginSchema) {
       // 2. REFRESH ROUTER AGAR NAVBAR MEMBACA STATE TERBARU
       router.refresh();
       router.push("/");
+      toast.success("login successfull");
     },
     onError(error: any) {
       toast.error(error?.response?.data?.message);

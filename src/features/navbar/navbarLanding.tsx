@@ -1,13 +1,17 @@
 import { navItems } from "@/data/data";
+import Link from "next/link";
+import { useState } from "react";
 import { FaUser } from "react-icons/fa";
 
 export function NavbarLandingSection() {
+  const [activeNav, setActiveNav] = useState("HOME");
+
   return (
     <>
       <nav className="navbar bg-[#ffffff] shadow-md lg:px-6">
         {/* start */}
         <div className="navbar-start">
-          <div className="dropdown">
+          <div className="dropdown relative z-100">
             <div
               tabIndex={0}
               role="button"
@@ -35,16 +39,16 @@ export function NavbarLandingSection() {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a href="/">Beranda</a>
+                <a href="/">home</a>
               </li>
               <li>
-                <a href="/about-us">Tentang Kami</a>
+                <a href="/about-us">About Us</a>
               </li>
               <li>
-                <a href="/products-services">Layanan & Produk</a>
+                <a href="/products-services">Products & Services</a>
               </li>
               <li>
-                <a href="/teams">Tim Kami</a>
+                <a href="/teams">Our Team</a>
               </li>
               <li>
                 <a href="/blog-list">Blog</a>
@@ -71,31 +75,43 @@ export function NavbarLandingSection() {
         {/* center */}
         <div className="hidden lg:navbar-center lg:flex gap-2">
           {navItems.map((item) => {
+            // 2. Cek apakah path URL saat ini sama dengan path milik item menu
+            const isActive = activeNav === item.label;
+
             return (
-              <a key={item.label} href={item.path}>
-                <button className="btn font-label bg-[#ffff] border-none shadow-none hover:shadow-md">
+              <Link key={item.label} href={item.path}>
+                <button
+                  onClick={() => setActiveNav(item.label)}
+                  className={`btn font-label border-none bg-[#ffff] transition-all duration-200 px-4 py-2 rounded-md ${
+                    isActive
+                      ? "shadow-md text-primary-900 font-bold" // 💡 Diubah dari text-primary-100 ke text-primary-900 agar warna tegas dan terlihat jelas
+                      : "shadow-none text-gray-700 hover:shadow-md"
+                  }`}
+                >
                   {item.label}
                 </button>
-              </a>
+              </Link>
             );
           })}
           <a href="/admin/login" className="ml-4 flex gap-2">
             <button className="btn font-label bg-[#F5F3EF] border-none shadow-none hover:shadow-sm rounded-3xl">
               <img src="/navbar-gembok.svg" alt="gembok" />
-              <span>TULIS BLOG</span>
+              <span>CREATE BLOG</span>
             </button>
           </a>
         </div>
         {/* end */}
         <div className="navbar-end">
           <div className="flex flex-col items-center gap-1">
-             <h1 className="hidden font-body font-semibold text-xs text-shadow-black">jovin nanti di edit</h1>
+            <h1 className="hidden font-body font-semibold text-xs text-shadow-black">
+              jovin nanti di edit
+            </h1>
           </div>
-            <a href="/login" className="ml-4 gap-2 ">
-              <button className="btn font-label bg-[#F5F3EF] border-none shadow-none hover:shadow-sm rounded-3xl py-1">
-                <span>Masuk</span>
-              </button>
-            </a>
+          <a href="/login" className="ml-4 gap-2 ">
+            <button className="btn font-label bg-[#F5F3EF] border-none shadow-none hover:shadow-sm rounded-3xl py-1">
+              <span>Login</span>
+            </button>
+          </a>
 
           <div className="rounded-full w-9 h-9 overflow-hidden flex justify-center items-center bg-slate-200 ml-2">
             <FaUser />

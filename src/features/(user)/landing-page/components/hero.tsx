@@ -1,5 +1,6 @@
 import { GoDotFill } from "react-icons/go";
 import { coffeeBatchData } from "@/data/data";
+import { coffeeQualitiesData } from "@/data/data";
 
 export function HeroSection() {
   return (
@@ -11,7 +12,7 @@ export function HeroSection() {
         <img
           src="/herosection-background.png"
           alt="bg"
-          className="absolute inset-0 w-full h-full object-cover z-0 opacity-60 pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover z-0 opacity-50 pointer-events-none"
         />
 
         {/* LAPISAN OVERLAY (Opsional: untuk memastikan teks lebih terbaca jika gambarnya terlalu ramai) */}
@@ -22,6 +23,9 @@ export function HeroSection() {
 
         {/* Kanan (Menggelap ke arah kanan) */}
         <div className="absolute inset-y-0 right-0 w-1/4 md:w-1/3 g-linear-to-l from-black/40 to-transparent z-10 pointer-events-none" />
+
+        {/* Gradasi Bawah Menyatu ke Krem [#F5F3EF] === */}
+        <div className="absolute bottom-0 inset-x-0 h-32 bg-linear-to-t from-primary-50 to-transparent z-10 pointer-events-none" />
 
         {/* KONTEN TEKS (Berada di atas gambar berkat z-20) */}
         <div
@@ -83,10 +87,7 @@ export function HeroSection() {
                 <div key={item?.id} className="bg-[#ffff] rounded-lg p-6.25">
                   <div className="mb-4 flex justify-between items-center border-b pb-2.5">
                     <div className="flex gap-2">
-                      <img
-                        src={item?.header?.minilogo}
-                        alt="logokecil"
-                      />
+                      <img src={item?.header?.minilogo} alt="logokecil" />
                       <h1 className="font-label font-bold text-[10px] text-primary-10">
                         {item?.header?.title}
                       </h1>
@@ -158,7 +159,27 @@ export function HeroSection() {
             })}
           </div>
 
+          <div className="bg-primary-200 grid grid-cols-2 lg:grid-cols-4 py-6 gap-6 px-6 w-full rounded-lg">
+            {coffeeQualitiesData.map((item) => {
+              return (
+                <div
+                  key={item?.id}
+                  className="flex flex-col items-center justify-center gap-2"
+                >
+                  <div className="flex gap-2">
+                    <img src={item?.icon} alt="logo footer" />
+                    <h1 className="font-label font-bold text-xs text-primary-150">
+                      {item?.title}
+                    </h1>
+                  </div>
 
+                  <h1 className="font-body text-[13px] text-primary-10">
+                    {item?.description}
+                  </h1>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>

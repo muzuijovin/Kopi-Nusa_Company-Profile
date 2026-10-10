@@ -39,6 +39,7 @@ export default function UserLayout({ children }: LayoutProps<"/">) {
         <div>{children}</div>
         <FooterSection />
       </div>
+      
     </>
   );
 }
