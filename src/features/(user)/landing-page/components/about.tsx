@@ -42,7 +42,7 @@ export function AboutHomeSection() {
           </div>
 
           {/* sebelah kanan */}
-          <div className="flex flex-col gap-6 justify-center items-start">
+          <div className="flex flex-col gap-6 justify-center items-start max-w-2xl">
             <h2 className="font-label font-bold text-xs text-[#5E3407]">
               PERJALANAN KAMI SEJAK 2018
             </h2>
