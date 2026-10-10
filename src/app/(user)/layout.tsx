@@ -1,5 +1,4 @@
 "use client";
-
 import { FooterSection } from "@/components/footer";
 import { useAuthStore } from "@/store/useAuthStore";
 import { useQuery } from "@tanstack/react-query";
@@ -28,7 +27,8 @@ export default function UserLayout({ children }: LayoutProps<"/">) {
   // 2. Zustand baru diperbarui di sini setelah data dari server masuk
   useEffect(() => {
     if (data) {
-      setUserAuthStore(data.username, data.email, data.objectId);
+      const userData = data as any;
+      setUserAuthStore(userData.username, userData.email, userData.objectId);
     }
   }, [data, setUserAuthStore]);
 

@@ -16,7 +16,7 @@ export function TeamsSectionOne() {
           "https://api.backendless.com/A73033C9-9473-4F00-8873-C91B67EEA0F4/5B9272C5-AA16-45BD-B422-F21BB7E83DFF/data/Actor",
         );
 
-        setTeams(res.data);
+        setTeams(res.data as any);
       } catch (error: unknown) {
         if (error instanceof Error) {
           toast.error(error?.message);
