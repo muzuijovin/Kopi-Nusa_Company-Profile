@@ -4,6 +4,9 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.ico",
+  },
   title: "Kopi Nusa",
   description: "Kopi terenak se-Indonesia",
 };
