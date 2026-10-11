@@ -56,6 +56,31 @@ export function TeamsSectionOne() {
         </div>
         {/* bagian grid */}
         <div className="grid grid-cols-4 gap-6">
+          <div className="p-5 rounded-lg bg-white h-max">
+                  {/* foto */}
+                  <div className="rounded-lg bg-primary-50 flex justify-center items-center w-full h-70 mb-5">
+                    <FaUser className=" w-10 h-10" />
+                  </div>
+                  {/* keterangan */}
+                  <div>
+                    {/* kategori */}
+                    <div className="bg-primary-150 flex justify-center items-center w-[30%] rounded-xl p-1 mb-2">
+                      <h2 className="text-white text-[10px] font-label font-bold">
+                        OWNER
+                      </h2>
+                    </div>
+                    {/* nama */}
+                    <h1 className="font-headline font-semibold text-[22px] text-[#1B1C1A] mb-2">
+                      Besty Cintara
+                    </h1>
+                    {/* description */}
+                    <h3 className="text-[#50453E] text-[13px] font-body">
+                      mengendalikan keseluruhan bisnis mulai dari awal hingga production
+                    </h3>
+                  </div>
+                </div>
+
+          
           {getTeamsLoading ? (
             <span className="loading loading-spinner loading-xl"></span>
           ) : (
@@ -63,7 +88,7 @@ export function TeamsSectionOne() {
               return (
                 <div key={index} className="p-5 rounded-lg bg-white h-max">
                   {/* foto */}
-                  <div className="rounded-t-lg bg-primary-50 flex justify-center items-center w-full h-70 mb-5">
+                  <div className="rounded-lg bg-primary-50 flex justify-center items-center w-full h-70 mb-5">
                     <FaUser className=" w-10 h-10" />
                   </div>
                   {/* keterangan */}

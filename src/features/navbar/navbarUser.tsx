@@ -1,10 +1,10 @@
 import { navItems } from "@/data/data";
 import { useAuthStore } from "@/store/useAuthStore";
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 export function NavbarUserSection() {
-  const [activeNav, setActiveNav] = useState("HOME");
+  const activeNav = usePathname();
   const { email, username } = useAuthStore();
   const handleLogout = () => {
     // Hapus data dari localStorage
@@ -47,19 +47,19 @@ export function NavbarUserSection() {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a href="/">Home</a>
+                <Link href="/">Home</Link>
               </li>
               <li>
-                <a href="/about-us">About Us</a>
+                <Link href="/about-us">About Us</Link>
               </li>
               <li>
-                <a href="/products-services">Products & Services</a>
+                <Link href="/products-services">Products & Services</Link>
               </li>
               <li>
-                <a href="/teams">Our Team</a>
+                <Link href="/teams">Our Team</Link>
               </li>
               <li>
-                <a href="/blog-list">Blog</a>
+                <Link href="/blog-list">Blog</Link>
               </li>
             </ul>
           </div>
@@ -84,12 +84,11 @@ export function NavbarUserSection() {
         <div className="hidden lg:navbar-center lg:flex gap-2">
           {navItems.map((item) => {
             // 2. Cek apakah path URL saat ini sama dengan path milik item menu
-            const isActive = activeNav === item.label;
+            const isActive = activeNav === item.path;
 
             return (
               <Link key={item.label} href={item.path}>
                 <button
-                  onClick={() => setActiveNav(item.label)}
                   className={`btn font-label border-none bg-[#ffff] transition-all duration-200 px-4 py-2 rounded-md ${
                     isActive
                       ? "shadow-md text-primary-900 font-bold" // 💡 Diubah dari text-primary-100 ke text-primary-900 agar warna tegas dan terlihat jelas

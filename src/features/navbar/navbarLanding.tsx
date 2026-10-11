@@ -1,16 +1,18 @@
 import { navItems } from "@/data/data";
 import Link from "next/link";
-import { useState } from "react";
 import { FaUser } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 export function NavbarLandingSection() {
-  const [activeNav, setActiveNav] = useState("HOME");
+  const activeNav = usePathname();
 
+  // Cek apakah path URL saat ini sama dengan path milik item menu
   return (
     <>
       <nav className="navbar bg-[#ffffff] shadow-md lg:px-6">
         {/* start */}
         <div className="navbar-start">
+          {/* dropdown */}
           <div className="dropdown relative z-100">
             <div
               tabIndex={0}
@@ -39,23 +41,23 @@ export function NavbarLandingSection() {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a href="/">home</a>
+                <Link href="/">Home</Link>
               </li>
               <li>
-                <a href="/about-us">About Us</a>
+                <Link href="/about-us">About Us</Link>
               </li>
               <li>
-                <a href="/products-services">Products & Services</a>
+                <Link href="/products-services">Products & Services</Link>
               </li>
               <li>
-                <a href="/teams">Our Team</a>
+                <Link href="/teams">Our Team</Link>
               </li>
               <li>
-                <a href="/blog-list">Blog</a>
+                <Link href="/blog-list">Blog</Link>
               </li>
             </ul>
           </div>
-
+          {/* logo dan brand */}
           <div className="flex gap-3 ml-2">
             <img
               src="/navbar-kopi-nusa-logo.svg"
@@ -76,12 +78,11 @@ export function NavbarLandingSection() {
         <div className="hidden lg:navbar-center lg:flex gap-2">
           {navItems.map((item) => {
             // 2. Cek apakah path URL saat ini sama dengan path milik item menu
-            const isActive = activeNav === item.label;
+            const isActive = activeNav === item.path;
 
             return (
               <Link key={item.label} href={item.path}>
                 <button
-                  onClick={() => setActiveNav(item.label)}
                   className={`btn font-label border-none bg-[#ffff] transition-all duration-200 px-4 py-2 rounded-md ${
                     isActive
                       ? "shadow-md text-primary-900 font-bold" // 💡 Diubah dari text-primary-100 ke text-primary-900 agar warna tegas dan terlihat jelas
@@ -93,12 +94,12 @@ export function NavbarLandingSection() {
               </Link>
             );
           })}
-          <a href="/admin/login" className="ml-4 flex gap-2">
+          <Link href="/admin/login" className="ml-4 flex gap-2">
             <button className="btn font-label bg-[#F5F3EF] border-none shadow-none hover:shadow-sm rounded-3xl">
               <img src="/navbar-gembok.svg" alt="gembok" />
               <span>CREATE BLOG</span>
             </button>
-          </a>
+          </Link>
         </div>
         {/* end */}
         <div className="navbar-end">
@@ -107,11 +108,11 @@ export function NavbarLandingSection() {
               jovin nanti di edit
             </h1>
           </div>
-          <a href="/login" className="ml-4 gap-2 ">
+          <Link href="/login" className="ml-4 gap-2 ">
             <button className="btn font-label bg-[#F5F3EF] border-none shadow-none hover:shadow-sm rounded-3xl py-1">
               <span>Login</span>
             </button>
-          </a>
+          </Link>
 
           <div className="rounded-full w-9 h-9 overflow-hidden flex justify-center items-center bg-slate-200 ml-2">
             <FaUser />

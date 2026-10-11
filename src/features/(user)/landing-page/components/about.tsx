@@ -7,7 +7,7 @@ export function AboutHomeSection() {
       <div className="bg-primary-50 h-max mx-auto px-12 py-28">
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
           {/* sebelah kiri */}
-          <div className="px-20 h-130 overflow-hidden flex justify-center items-center">
+          <div className="px-20 overflow-hidden flex justify-center items-center">
             <div className="relative w-full h-full overflow-hidden rounded-lg">
               <img
                 src="landing-aboutsection-foto.svg"
@@ -87,7 +87,7 @@ export function AboutHomeSection() {
         </div>
 
         {/* grid container besar */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
           {coffeeMilestonesData.map((item) => {
             return (
               <div key={item?.id} className="bg-primary-200 rounded-lg flex flex-col justify-center items-center p-6">

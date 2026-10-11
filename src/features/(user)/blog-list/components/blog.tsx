@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { LuClock, LuCalendar } from "react-icons/lu";
+import { FaUser } from "react-icons/fa";
 
 interface Blog {
   objectId?: string;
@@ -112,6 +113,77 @@ export function BlogListSection() {
         </div>
         {/* List Artikel - Diperbarui Sesuai Desain Gambar */}
         <div className="grid grid-cols-1 gap-8 max-w-5xl mx-auto">
+          <article className="grid overflow-hidden rounded-2xl bg-white border border-[#EFE5DC] md:grid-cols-2 shadow-sm hover:shadow-md transition-shadow duration-300">
+            {/* Bagian Gambar Kiri */}
+            <div className="relative w-full h-64 md:h-full min-h-75 bg-[#F9F6F0]">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfJ90ZtN-j5b8Jzm5I4eng5XnztVbLXwOKofOarXpnqg&s=10"
+                alt="article pertama"
+                className="w-full h-full object-cover"
+              />
+              {/* Badges di Atas Gambar */}
+              <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                <span className="bg-[#4E3629] text-white font-semibold text-[10px] tracking-wider px-2.5 py-1 rounded-full uppercase shadow-sm">
+                  ★ SOROTAN UTAMA
+                </span>
+                <span className="bg-white/90 backdrop-blur-sm text-[#4E3629] font-semibold text-[10px] tracking-wider px-2.5 py-1 rounded-full uppercase shadow-sm border border-[#EFE5DC]">
+                  Catatan Roasting
+                </span>
+              </div>
+            </div>
+
+            {/* Bagian Informasi & Teks Kanan */}
+            <div className="flex flex-col justify-between p-6 md:p-10 text-[#2B1B12]">
+              <div>
+                {/* Meta Data: Waktu baca & Tanggal */}
+                <div className="flex items-center gap-4 text-xs text-[#705E52] mb-4">
+                  <span className="flex items-center gap-1.5">
+                    <LuClock className="w-3.5 h-3.5" /> 6 menit baca
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <LuCalendar className="w-3.5 h-3.5" /> 14 Mei 2026"
+                  </span>
+                </div>
+
+                {/* Judul Artikel */}
+                <h2 className="font-serif text-2xl md:text-3xl font-bold leading-tight mb-4 text-[#2B1B12] hover:text-[#7A523E] transition-colors line-clamp-3">
+                  Menyingkap Rahasia Fermentasi Anaerobik pada Biji Kopi Flores
+                  Bajawa
+                </h2>
+
+                {/* Ringkasan Cerita */}
+                <p className="text-sm md:text-base text-[#5C4D43] leading-relaxed mb-6 line-clamp-4">
+                  Bagaimana proses fermentasi tanpa oksigen selama 96 jam
+                  mengubah profil asam malat menjadi ledakan rasa markisa,
+                  rempah hangat, dan karamel manis khas dataran tinggi Bajawa.
+                </p>
+              </div>
+
+              {/* Bagian Footer Card: Penulis & Tombol Aksi */}
+              <div className="flex items-center justify-between pt-4 border-t border-[#F2ECE6] mt-auto">
+                {/* Profil Penulis (Dummy data diselaraskan dengan UI) */}
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 flex items-center justify-center rounded-full overflow-hidden bg-stone-200">
+                    <FaUser />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-[#2B1B12]">
+                      Raden Arya
+                    </p>
+                    <p className="text-[10px] tracking-wider text-[#A38A75] font-semibold uppercase">
+                      MASTER ROASTER
+                    </p>
+                  </div>
+                </div>
+
+                {/* Tombol Baca Cerita */}
+                <button className="flex items-center gap-2 bg-[#4E3629] text-white px-5 py-2.5 rounded-lg text-xs font-bold tracking-wide hover:bg-[#3D2A20] transition-colors cursor-pointer shadow-sm">
+                  BACA CERITA <span>→</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
           {getBlogLoading ? (
             <div className="flex justify-center py-10">
               <span className="loading loading-spinner loading-lg text-[#4E3629]"></span>
@@ -175,12 +247,8 @@ export function BlogListSection() {
                   <div className="flex items-center justify-between pt-4 border-t border-[#F2ECE6] mt-auto">
                     {/* Profil Penulis (Dummy data diselaraskan dengan UI) */}
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-full overflow-hidden bg-stone-200">
-                        <img
-                          src="https://unsplash.com"
-                          alt="Author Avatar"
-                          className="w-full h-full object-cover"
-                        />
+                      <div className="w-9 h-9 flex items-center justify-center rounded-full overflow-hidden bg-stone-200">
+                        <FaUser />
                       </div>
                       <div>
                         <p className="text-xs font-bold text-[#2B1B12]">

@@ -1,6 +1,8 @@
 import { GoDotFill } from "react-icons/go";
 import { coffeeBatchData } from "@/data/data";
 import { coffeeQualitiesData } from "@/data/data";
+import Image from "next/image";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -9,9 +11,10 @@ export function HeroSection() {
       <div className="relative min-h-[90vh] w-full flex items-center justify-center overflow-hidden bg-[#FBF9F6]">
         {/* GAMBAR LATAR BELAKANG */}
         {/* Menggunakan object-cover agar gambar penuh ke segala sisi layar tanpa gepeng */}
-        <img
+        <Image
           src="/herosection-background.png"
           alt="bg"
+          fill
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-50 pointer-events-none"
         />
 
@@ -60,7 +63,7 @@ export function HeroSection() {
           </div>
 
           <div className="max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-3">
-            <a href="">
+            <Link href="">
               <div className="flex justify-center items-center gap-2 py-3.5 px-8 bg-primary-150 rounded-lg hover:shadow-md">
                 <img src="/herosection-eksplor-1.svg" alt="logo" />
                 <h1 className="font-label font-medium text-[14px] text-[#FFFFFF]">
@@ -68,16 +71,16 @@ export function HeroSection() {
                 </h1>
                 <img src="/herosection-eksplor-2.svg" alt="logo" />
               </div>
-            </a>
+            </Link>
 
-            <a href="">
+            <Link href="">
               <div className="flex justify-center items-center gap-2 py-3.5 px-8 bg-primary-200 rounded-lg hover:shadow-md">
                 <img src="/herosection-jadwal.svg" alt="logo" />
                 <h1 className="font-label font-semibold text-[14px] text-primary-150">
                   JADWAL CUPPING & KEMITRAAN
                 </h1>
               </div>
-            </a>
+            </Link>
           </div>
 
           {/* container grid */}
