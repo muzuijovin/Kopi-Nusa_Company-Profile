@@ -11,7 +11,7 @@ export function ProserProductsSection() {
 
   return (
     <>
-      <div className="p-12 bg-primary-50 h-max mx-auto">
+      <div className="p-6 md:p-12 bg-primary-50 h-max mx-auto">
         {/* 1. Efek Pendaran Cahaya BG Lembut (Menciptakan gradasi estetik di pojok kanan atas) */}
         <div className="absolute top-40 right-0 w-175 h-125 rounded-full bg-[radial-gradient(circle,rgba(244,218,207,0.35)_0%,rgba(244,218,207,0.1)_60%,transparent_100%)] pointer-events-none z-0" />
 
