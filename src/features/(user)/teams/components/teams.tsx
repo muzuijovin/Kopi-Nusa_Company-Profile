@@ -55,7 +55,7 @@ export function TeamsSectionOne() {
           </div>
         </div>
         {/* bagian grid */}
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="p-5 rounded-lg bg-white h-max">
                   {/* foto */}
                   <div className="rounded-lg bg-primary-50 flex justify-center items-center w-full h-70 mb-5">

@@ -13,35 +13,35 @@ export default function RegisterPage() {
         <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-96 h-96 bg-amber-200/40 rounded-full blur-3xl pointer-events-none" />
 
         {/* Konten Portal Kopi Nusa Anda Mulai dari Sini */}
-        <div className="relative z-10 flex flex-col items-center">
+        <div className="relative z-10 flex flex-col items-center justify-center">
           {/* Masukkan Logo, Judul, dan Card Login di sini */}
 
-          <div className="flex flex-col items-center mb-6">
+          <div className="flex flex-col items-center justify-center mb-6">
             <Link href="/">
               <div className="p-2 bg-[#F5F3EF] rounded-lg mb-4 hover:shadow-lg">
                 <img src="/login-logo-kopi-nusa.svg" alt="logo" />
               </div>
             </Link>
             {/* tulisan */}
-            <div className="flex gap-2 items-center justify-center bg-[#EFEEEA] rounded-lg shadow-sm mb-3">
+            <div className="text-center max-w-md flex gap-2 items-center justify-center bg-[#EFEEEA] rounded-lg shadow-sm mb-3">
               <GoDotFill className="w-1.5 h-1.5 text-primary-150" />
               <h2 className="font-label font-medium text-xs text-[#5E3407]">
                 KOPI NUSA ROASTERY PORTAL
               </h2>
             </div>
 
-            <h1 className="font-headline font-semibold text-[28px] text-[#1B1C1A] mb-2">
+            <h1 className="text-center max-w-md font-headline font-semibold text-[28px] text-[#1B1C1A] mb-2">
               Selamat Datang di Portal Komunitas Kopi Nusa
             </h1>
 
-            <h3 className="font-body text-[15px] text-[#50453E] mb-6">
+            <h3 className="text-center max-w-md font-body text-[15px] text-[#50453E] mb-6">
               Akses akun Anda untuk mengelola pesanan wholesale, dan mengakses
               catatan cupping lab.
             </h3>
           </div>
 
           {/* container */}
-          <div className="w-[70vh] md:w-[50vh] lg:w-[80vh] h-max p-10 bg-[#FFFFFF] rounded-lg shadow-md">
+          <div className="w-[45vh] md:w-[65vh] lg:w-[80vh] h-max p-10 bg-[#FFFFFF] rounded-lg shadow-md">
             {/* login/register */}
             <div className="grid grid-cols-1 gap-2 md:gap-1 md:grid-cols-2 p-0.75 rounded-lg bg-[#EFEEEA] mb-8">
               <Link href="/login">
