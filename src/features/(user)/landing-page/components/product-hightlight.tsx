@@ -6,10 +6,10 @@ export function ProductSection() {
       <div className="bg-primary-200 h-max mx-auto px-12 py-28">
         <div className="flex justify-between items-center">
           <div className="">
-            <h2 className="font-label font-bold text-[10px] md:text-xs text-[#5E3407]">
+            <h2 className="font-label font-bold text-[8px] md:text-xs text-[#5E3407]">
               PILIHAN KURASI ROASTER
             </h2>
-            <h1 className="font-headline font-bold text-[30px] md:text-[40px] text-primary-150">
+            <h1 className="font-headline font-bold text-[17px] md:text-[40px] text-primary-150">
               Biji Kopi Unggulan & Layanan Khusus
             </h1>
           </div>

@@ -162,7 +162,7 @@ export function HeroSection() {
             })}
           </div>
 
-          <div className="bg-primary-200 grid grid-cols-2 lg:grid-cols-4 py-6 gap-6 px-6 w-full rounded-lg">
+          <div className="bg-primary-200 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-6 gap-6 px-6 w-full rounded-lg">
             {coffeeQualitiesData.map((item) => {
               return (
                 <div

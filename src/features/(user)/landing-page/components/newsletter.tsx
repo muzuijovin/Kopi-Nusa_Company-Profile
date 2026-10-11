@@ -34,7 +34,7 @@ export default function NewsletterAndFaq() {
               />
               <button
                 type="submit"
-                className="btn bg-primary-150 hover:bg-[#40291a] text-white border-none rounded px-6 min-h-0 h-10 font-medium tracking-wider text-xs uppercase font-label"
+                className="flex justify-center items-center w-20 md:w-25 bg-primary-150 hover:bg-[#40291a] text-white border-none rounded px-6 min-h-0 h-10 font-medium tracking-wider text-[8px] md:text-xs uppercase font-label"
               >
                 Langganan
               </button>
