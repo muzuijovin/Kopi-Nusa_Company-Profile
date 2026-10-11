@@ -1,5 +1,6 @@
 import { FormLoginAdmin } from "@/features/(admin)/login/components/formLoginAdmin";
 import { GoDotFill } from "react-icons/go";
+import Link from "next/link";
 
 export default function LoginAdmin() {
   return (
@@ -15,11 +16,11 @@ export default function LoginAdmin() {
         <div className="relative z-10 flex flex-col items-center">
           {/* Masukkan Logo, Judul, dan Card Login di sini */}
           <div className="flex flex-col items-center mb-6">
-            <a href="/">
+            <Link href="/">
               <div className="p-2 bg-[#F5F3EF] rounded-lg mb-4 hover:shadow-lg">
                 <img src="/login-logo-kopi-nusa.svg" alt="logo" />
               </div>
-            </a>
+            </Link>
             {/* tulisan */}
             <div className="flex gap-2 items-center justify-center bg-[#EFEEEA] rounded-lg shadow-sm mb-3 py-1 px-5">
               <img src="/login-logo-admin.svg" alt="logo" />

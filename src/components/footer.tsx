@@ -5,6 +5,7 @@ import {
   FaPhoneAlt,
   FaHandshake,
 } from "react-icons/fa";
+import Link from "next/link";
 
 export function FooterSection() {
   return (
@@ -34,24 +35,24 @@ export function FooterSection() {
             </p>
             {/* Ikon Sosial Media */}
             <div className="flex items-center gap-3 mt-2 text-[#50453E]">
-              <a
+              <Link
                 href="#"
                 className="hover:text-primary-150 transition-colors p-1.5 bg-[#F5F3EF] rounded-md"
               >
                 <FaInstagram className="w-4 h-4" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="hover:text-primary-150 transition-colors p-1.5 bg-[#F5F3EF] rounded-md"
               >
                 <FaGlobe className="w-4 h-4" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="hover:text-primary-150 transition-colors p-1.5 bg-[#F5F3EF] rounded-md"
               >
                 <FaEnvelope className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -62,52 +63,52 @@ export function FooterSection() {
             </h4>
             <ul className="flex flex-col gap-2.5 font-body font-normal text-[13px] text-[#50453E]">
               <li>
-                <a
+                <Link
                   href="/"
                   className="hover:text-primary-150 transition-colors hover:underline"
                 >
                   Beranda
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/about-us"
                   className="hover:text-primary-150 transition-colors hover:underline"
                 >
                   Tentang Kami
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/products-services"
                   className="hover:text-primary-150 transition-colors hover:underline"
                 >
                   Layanan & Produk
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/teams"
                   className="hover:text-primary-150 transition-colors hover:underline"
                 >
                   Tim Sangrai & Barista
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/blog-list"
                   className="hover:text-primary-150 transition-colors hover:underline"
                 >
                   Jurnal & Cerita Kopi
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   className="hover:text-primary-150 transition-colors hover:underline"
                 >
                   Publikasi Artikel
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -151,27 +152,27 @@ export function FooterSection() {
               Kontak & Kerjasama
             </h4>
             <div className="flex flex-col gap-3 font-body text-[13px] text-[#50453E]">
-              <a
+              <Link
                 href="mailto:halo@kopinusa.id"
                 className="flex items-center gap-2 hover:text-primary-150 transition-colors hover:underline"
               >
                 <FaEnvelope className="w-3.5 h-3.5 text-primary-150" />
                 <span>halo@kopinusa.id</span>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="tel:02158902341"
                 className="flex items-center gap-2 hover:text-primary-150 transition-colors hover:underline"
               >
                 <FaPhoneAlt className="w-3.5 h-3.5 text-primary-150" />
                 <span>(021) 5890 2341</span>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="flex items-center gap-2 hover:text-primary-150 transition-colors hover:underline"
               >
                 <FaHandshake className="w-3.5 h-3.5 text-primary-150" />
                 <span>Kemitraan Kafe & B2B Roasting</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { FormRegister } from "@/features/register/components/formRegister";
 import { GoDotFill } from "react-icons/go";
+import Link from "next/link";
 
 export default function RegisterPage() {
   return (
@@ -16,11 +17,11 @@ export default function RegisterPage() {
           {/* Masukkan Logo, Judul, dan Card Login di sini */}
 
           <div className="flex flex-col items-center mb-6">
-            <a href="/">
+            <Link href="/">
               <div className="p-2 bg-[#F5F3EF] rounded-lg mb-4 hover:shadow-lg">
                 <img src="/login-logo-kopi-nusa.svg" alt="logo" />
               </div>
-            </a>
+            </Link>
             {/* tulisan */}
             <div className="flex gap-2 items-center justify-center bg-[#EFEEEA] rounded-lg shadow-sm mb-3">
               <GoDotFill className="w-1.5 h-1.5 text-primary-150" />
@@ -43,7 +44,7 @@ export default function RegisterPage() {
           <div className="w-[70vh] md:w-[50vh] lg:w-[80vh] h-max p-10 bg-[#FFFFFF] rounded-lg shadow-md">
             {/* login/register */}
             <div className="grid grid-cols-1 gap-2 md:gap-1 md:grid-cols-2 p-0.75 rounded-lg bg-[#EFEEEA] mb-8">
-              <a href="/login">
+              <Link href="/login">
                 <div className="flex justify-center items-center rounded-lg hover:shadow-md active:bg-white py-2.5">
                   <div className="flex gap-2">
                     <img src="/login-logo-masuk.svg" alt="logo masuk" />
@@ -52,8 +53,8 @@ export default function RegisterPage() {
                     </h1>
                   </div>
                 </div>
-              </a>
-              <a href="/register">
+              </Link>
+              <Link href="/register">
                 <div className="flex justify-center items-center rounded-lg bg-[#FFFFFF] hover:shadow-md  py-2.5">
                   <div className="flex gap-2">
                     <img src="/login-logo-register.svg" alt="logo register" />
@@ -62,7 +63,7 @@ export default function RegisterPage() {
                     </h1>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
 
             {/* kata-kata */}

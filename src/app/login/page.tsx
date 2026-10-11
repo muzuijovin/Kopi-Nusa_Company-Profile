@@ -1,5 +1,6 @@
 import { FormLogin } from "@/features/login/components/formLogin";
 import { GoDotFill } from "react-icons/go";
+import Link from "next/link";
 
 export default function LoginPage() {
   return (
@@ -15,11 +16,11 @@ export default function LoginPage() {
         <div className="relative z-10 flex flex-col items-center">
           {/* Masukkan Logo, Judul, dan Card Login di sini */}
           <div className="flex flex-col items-center mb-6">
-            <a href="/">
+            <Link href="/">
               <div className="p-2 bg-[#F5F3EF] rounded-lg mb-4 hover:shadow-lg">
                 <img src="/login-logo-kopi-nusa.svg" alt="logo" />
               </div>
-            </a>
+            </Link>
             {/* tulisan */}
             <div className="flex gap-2 items-center justify-center bg-[#EFEEEA] rounded-lg shadow-sm mb-3 py-1 px-5">
               <GoDotFill className="w-1.5 h-1.5 text-primary-150" />
@@ -42,7 +43,7 @@ export default function LoginPage() {
           <div className="w-[70vh] md:w-[50vh] lg:w-[80vh] h-max p-10 bg-[#FFFFFF] rounded-lg shadow-md">
             {/* login/register */}
             <div className="grid grid-cols-1 gap-2 md:gap-1 md:grid-cols-2 p-0.75 rounded-lg bg-[#EFEEEA] mb-8">
-              <a href="/login">
+              <Link href="/login">
                 <div className="flex justify-center items-center rounded-lg bg-[#FFFFFF] hover:shadow-md py-2.5 ">
                   <div className="flex gap-2">
                     <img src="/login-logo-masuk.svg" alt="logo masuk" />
@@ -51,8 +52,8 @@ export default function LoginPage() {
                     </h1>
                   </div>
                 </div>
-              </a>
-              <a href="/register">
+              </Link>
+              <Link href="/register">
                 <div className="flex justify-center items-center rounded-lg hover:shadow-md active:bg-white py-2.5">
                   <div className="flex gap-2">
                     <img src="/login-logo-register.svg" alt="logo register" />
@@ -61,7 +62,7 @@ export default function LoginPage() {
                     </h1>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
 
             {/* kata-kata */}
@@ -78,9 +79,9 @@ export default function LoginPage() {
               <h1 className="text-[#50453E] text-[10px] font-body">
                 Belum memiliki akun Kopi Nusa?{" "}
               </h1>
-              <a href="/register">
+              <Link href="/register">
                 <h1 className="font-body font-semibold text-[11px] text-primary-150 hover:underline">Daftar Akun Baru</h1>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
