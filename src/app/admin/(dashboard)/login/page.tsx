@@ -16,7 +16,7 @@ export default function LoginAdmin() {
           {/* Masukkan Logo, Judul, dan Card Login di sini */}
           <div className="flex flex-col items-center mb-6">
             <a href="/">
-              <div className="p-2 bg-[#F5F3EF] rounded-lg mb-4">
+              <div className="p-2 bg-[#F5F3EF] rounded-lg mb-4 hover:shadow-lg">
                 <img src="/login-logo-kopi-nusa.svg" alt="logo" />
               </div>
             </a>
