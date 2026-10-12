@@ -8,9 +8,10 @@ import { toast } from "react-toastify";
 export function TeamsSectionOne() {
   const [teams, setTeams] = useState<any[]>([]);
   const [getTeamsLoading, setGetTeamsLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    async () => {
+ 
+    useEffect(() => {
+    // 1. Tambahkan tanda kurung buka di awal fungsi async
+    (async () => {
       try {
         const res = await axios.get(
           "https://api.backendless.com/A73033C9-9473-4F00-8873-C91B67EEA0F4/5B9272C5-AA16-45BD-B422-F21BB7E83DFF/data/Actor",
@@ -19,13 +20,14 @@ export function TeamsSectionOne() {
         setTeams(res.data as any);
       } catch (error: unknown) {
         if (error instanceof Error) {
-          toast.error(error?.message);
+          toast.error(error.message);
         }
       } finally {
         setGetTeamsLoading(false);
       }
-    };
+    })(); // 2. Tambahkan tanda kurung tutup dan pemanggil () di sini
   }, []);
+
 
   return (
     <>
