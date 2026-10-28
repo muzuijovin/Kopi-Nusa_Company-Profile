@@ -1,188 +1,111 @@
-import {
-  FaInstagram,
-  FaGlobe,
-  FaEnvelope,
-  FaPhoneAlt,
-  FaHandshake,
-} from "react-icons/fa";
+import { navItems } from "@/data/data";
+import { Globe, Handshake, Mail, Phone } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { FaInstagram } from "react-icons/fa";
+
+const socials = [
+  { label: "Instagram Kopi Nusa", href: "https://instagram.com", icon: FaInstagram },
+  { label: "Website Kopi Nusa", href: "/", icon: Globe },
+  { label: "Email Kopi Nusa", href: "mailto:halo@kopinusa.id", icon: Mail },
+];
+
+const locations = [
+  { title: "Roastery & Lab Bandung", detail: "Jl. Riau No. 128, Cihapit, Bandung, Jawa Barat" },
+  { title: "Creative Space & Bar Jakarta", detail: "Jl. Senopati No. 45, Kebayoran Baru, Jakarta Selatan" },
+  { title: "Jam Operasional", detail: "Senin - Minggu: 07.30 - 21.00 WIB" },
+];
+
+const contacts = [
+  { label: "halo@kopinusa.id", href: "mailto:halo@kopinusa.id", icon: Mail },
+  { label: "(021) 5890 2341", href: "tel:02158902341", icon: Phone },
+  { label: "Kemitraan Kafe & B2B Roasting", href: "/products-services", icon: Handshake },
+];
+
+const headingClass = "font-label text-sm font-bold uppercase tracking-wider text-primary-150";
+const linkClass =
+  "inline-flex min-h-8 items-center gap-2 transition-colors hover:text-primary-150 hover:underline";
 
 export function FooterSection() {
   return (
-    <footer className="w-full bg-[#FFFFFF] border-t border-[#D4C3BA]/40 px-5 py-10">
-      <div className="max-w-7xl mx-auto flex flex-col">
-        {/* BAGIAN ATAS: GRID KONTEN UTAMA */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
-          {/* KOLOM 1: BRAND LOGO & DESKRIPSI */}
+    <footer className="w-full border-t border-line bg-white px-4 py-14 md:px-6">
+      <div className="mx-auto flex max-w-7xl flex-col">
+        <div className="grid grid-cols-1 items-start gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {/* brand */}
           <div className="flex flex-col gap-4">
-            {/* Logo & Nama Brand */}
             <div className="flex items-center gap-3">
-              <img
-                src="/navbar-kopi-nusa-logo.svg"
-                alt="Kopi Nusa Logo"
-                className="w-7.5 h-7.5 object-contain"
-              />
-              <h2 className="font-headline font-bold text-[22px] leading-7.5 tracking-[-0.55px] text-primary-150">
-                Kopi Nusa
-              </h2>
+              <Image src="/navbar-kopi-nusa-logo.svg" alt="" width={30} height={30} />
+              <p className="font-headline text-[22px] font-bold text-primary-150">Kopi Nusa</p>
             </div>
-            {/* Deskripsi */}
-            <p className="font-body font-normal text-[13px] leading-[21.1px] text-[#50453E] max-w-94.5">
-              Roastery kopi artisanal Nusantara yang memadukan dedikasi pada
-              single-origin nusantara, relasi langsung dengan petani lokal, dan
-              proses sangrai presisi untuk menghadirkan karakter rasa terbaik
-              bumi Indonesia ke cangkir Anda.
+            <p className="max-w-sm text-sm leading-relaxed text-body">
+              Roastery kopi artisanal yang memadukan dedikasi pada single-origin Nusantara, relasi
+              langsung dengan petani lokal, dan proses sangrai presisi.
             </p>
-            {/* Ikon Sosial Media */}
-            <div className="flex items-center gap-3 mt-2 text-[#50453E]">
-              <Link
-                href="#"
-                className="hover:text-primary-150 transition-colors p-1.5 bg-[#F5F3EF] rounded-md"
-              >
-                <FaInstagram className="w-4 h-4" />
-              </Link>
-              <Link
-                href="#"
-                className="hover:text-primary-150 transition-colors p-1.5 bg-[#F5F3EF] rounded-md"
-              >
-                <FaGlobe className="w-4 h-4" />
-              </Link>
-              <Link
-                href="#"
-                className="hover:text-primary-150 transition-colors p-1.5 bg-[#F5F3EF] rounded-md"
-              >
-                <FaEnvelope className="w-4 h-4" />
-              </Link>
+            <div className="mt-1 flex items-center gap-2 text-body">
+              {socials.map(({ label, href, icon: Icon }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="flex size-11 items-center justify-center rounded-full bg-primary-100 transition-colors hover:bg-blush hover:text-primary-150"
+                >
+                  <Icon className="size-4" aria-hidden />
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* KOLOM 2: NAVIGASI */}
-          <div className="flex flex-col gap-4">
-            <h4 className="font-label font-bold text-[14px] leading-5 tracking-[0.7px] text-primary-150 uppercase">
-              Navigasi
-            </h4>
-            <ul className="flex flex-col gap-2.5 font-body font-normal text-[13px] text-[#50453E]">
+          {/* navigasi */}
+          <nav aria-label="Navigasi footer" className="flex flex-col gap-4">
+            <h2 className={headingClass}>Navigasi</h2>
+            <ul className="flex flex-col gap-1 text-sm text-body">
+              {navItems.map((item) => (
+                <li key={item.path}>
+                  <Link href={item.path} className={linkClass}>
+                    {item.label.charAt(0) + item.label.slice(1).toLowerCase()}
+                  </Link>
+                </li>
+              ))}
               <li>
-                <Link
-                  href="/"
-                  className="hover:text-primary-150 transition-colors hover:underline"
-                >
-                  Beranda
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about-us"
-                  className="hover:text-primary-150 transition-colors hover:underline"
-                >
-                  Tentang Kami
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/products-services"
-                  className="hover:text-primary-150 transition-colors hover:underline"
-                >
-                  Layanan & Produk
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/teams"
-                  className="hover:text-primary-150 transition-colors hover:underline"
-                >
-                  Tim Sangrai & Barista
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog-list"
-                  className="hover:text-primary-150 transition-colors hover:underline"
-                >
-                  Jurnal & Cerita Kopi
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="hover:text-primary-150 transition-colors hover:underline"
-                >
-                  Publikasi Artikel
+                <Link href="/admin/login" className={linkClass}>
+                  Publikasi artikel
                 </Link>
               </li>
             </ul>
+          </nav>
+
+          {/* lokasi */}
+          <div className="flex flex-col gap-4">
+            <h2 className={headingClass}>Fasilitas Roastery</h2>
+            <dl className="flex flex-col gap-3 text-sm">
+              {locations.map((loc) => (
+                <div key={loc.title}>
+                  <dt className="font-semibold text-ink">{loc.title}</dt>
+                  <dd className="mt-0.5 text-body">{loc.detail}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
-          {/* KOLOM 3: FASILITAS ROASTERY */}
+          {/* kontak */}
           <div className="flex flex-col gap-4">
-            <h4 className="font-label font-bold text-[14px] leading-5 tracking-[0.7px] text-primary-150 uppercase">
-              Fasilitas Roastery
-            </h4>
-            <div className="flex flex-col gap-3 font-body text-[13px] text-[#50453E]">
-              <div>
-                <p className="font-semibold text-[#1B1C1A] leading-5">
-                  Roastery & Lab Bandung:
-                </p>
-                <p className="text-gray-500 mt-0.5">
-                  Jl. Riau No. 128, Cihapit, Bandung, Jawa Barat
-                </p>
-              </div>
-              <div>
-                <p className="font-semibold text-[#1B1C1A] leading-5">
-                  Creative Space & Bar Jakarta:
-                </p>
-                <p className="text-gray-500 mt-0.5">
-                  Jl. Senopati No. 45, Kebayoran Baru, Jakarta Selatan
-                </p>
-              </div>
-              <div>
-                <p className="font-semibold text-[#1B1C1A] leading-5">
-                  Jam Operasional:
-                </p>
-                <p className="text-gray-500 mt-0.5">
-                  Senin - Minggu: 07.30 - 21.00 WIB
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* KOLOM 4: KONTAK & KERJASAMA */}
-          <div className="flex flex-col gap-4">
-            <h4 className="font-label font-bold text-[14px] leading-5 tracking-[0.7px] text-primary-150 uppercase">
-              Kontak & Kerjasama
-            </h4>
-            <div className="flex flex-col gap-3 font-body text-[13px] text-[#50453E]">
-              <Link
-                href="mailto:halo@kopinusa.id"
-                className="flex items-center gap-2 hover:text-primary-150 transition-colors hover:underline"
-              >
-                <FaEnvelope className="w-3.5 h-3.5 text-primary-150" />
-                <span>halo@kopinusa.id</span>
-              </Link>
-              <Link
-                href="tel:02158902341"
-                className="flex items-center gap-2 hover:text-primary-150 transition-colors hover:underline"
-              >
-                <FaPhoneAlt className="w-3.5 h-3.5 text-primary-150" />
-                <span>(021) 5890 2341</span>
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-2 hover:text-primary-150 transition-colors hover:underline"
-              >
-                <FaHandshake className="w-3.5 h-3.5 text-primary-150" />
-                <span>Kemitraan Kafe & B2B Roasting</span>
-              </Link>
-            </div>
+            <h2 className={headingClass}>Kontak & Kerjasama</h2>
+            <ul className="flex flex-col gap-1 text-sm text-body">
+              {contacts.map(({ label, href, icon: Icon }) => (
+                <li key={label}>
+                  <Link href={href} className={linkClass}>
+                    <Icon className="size-4 text-primary-150" aria-hidden />
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        {/* BAGIAN BAWAH: HAK CIPTA & SLOGAN */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-between pt-6 border-t border-gray-100 font-body text-[12px] text-gray-400">
-          <p>© 2026 Kopi Nusa Roastery. Seluruh hak cipta dilindungi.</p>
-          <p className="italic font-medium text-[#50453E]/80 mt-2 sm:mt-0">
-            Cita Rasa Nusantara di Setiap Seduhan
-          </p>
+        <div className="mt-12 flex flex-col items-center justify-between gap-2 border-t border-line pt-6 text-xs text-primary-10 sm:flex-row">
+          <p>© {new Date().getFullYear()} Kopi Nusa Roastery. Seluruh hak cipta dilindungi.</p>
+          <p className="font-headline italic">Cita Rasa Nusantara di Setiap Seduhan</p>
         </div>
       </div>
     </footer>

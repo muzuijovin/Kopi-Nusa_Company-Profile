@@ -1,38 +1,26 @@
-"use cliet";
+"use client";
 
 import { LoginApi } from "@/api/loginApi";
 import { LoginSchema } from "@/features/validation/login-schema";
 import { useAuthStore } from "@/store/useAuthStore";
 import { useMutation } from "@tanstack/react-query";
+import { isAxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-export function UseLoginMutation(getValues: () => LoginSchema) {
+export function UseLoginMutation() {
   const router = useRouter();
   const { setUserAuthStore } = useAuthStore();
 
   const { mutate: loginMutation, isPending } = useMutation({
-    mutationFn: async () => {
-      const { email, password } = getValues();
-      return await LoginApi({ email, password });
-    },
-    onSuccess(res: any) {
-      setUserAuthStore(
-        res?.data?.username,
-        res?.data?.email,
-        res?.data?.objectId,
-      );
-
-      // 1. SET PENANDA LOGIN DI SINI
-      localStorage.setItem("is_logged_in", "true");
-
-      // 2. REFRESH ROUTER AGAR NAVBAR MEMBACA STATE TERBARU
-      router.refresh();
+    mutationFn: (values: LoginSchema) => LoginApi(values),
+    onSuccess(res) {
+      setUserAuthStore(res.data?.username, res.data?.email, res.data?.objectId);
       router.push("/");
-      toast.success("login successfull");
+      toast.success("Login berhasil, selamat datang!");
     },
-    onError(error: any) {
-      toast.error(error?.response?.data?.message);
+    onError(error) {
+      toast.error(isAxiosError(error) ? error.response?.data?.message : "Login gagal");
     },
   });
 

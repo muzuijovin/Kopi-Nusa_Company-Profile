@@ -1,3 +1,6 @@
+import { unsplash } from "@/lib/images";
+import { Coffee, FlaskConical, type LucideIcon, Zap } from "lucide-react";
+
 /*navbar */
 interface NavItems {
   label: string;
@@ -54,7 +57,7 @@ export const coffeeBatchData: CoffeeBatchData[] = [
       badgeText: "SCA 86.5",
     },
     media: {
-      imageSrc: "/herosection-grid-1.svg", // Tempat URL foto pouring coffee v60
+      imageSrc: unsplash("1498804103079-a6351b050096", 1400),
       imageBadge: "LIGHT-MEDIUM",
     },
     content: {
@@ -81,7 +84,7 @@ export const coffeeBatchData: CoffeeBatchData[] = [
       badgeText: "Batch #109",
     },
     media: {
-      imageSrc: "/herosection-grid-2.svg", // Tempat URL foto pouring coffee v60
+      imageSrc: unsplash("1504627298434-2119d6928e93", 1400),
       imageBadge: "DIRECT TRADE 2025",
     },
     content: {
@@ -108,9 +111,9 @@ export const coffeeBatchData: CoffeeBatchData[] = [
       badgeText: "Kurva RoR",
     },
     media: {
-      imageSrc: "/herosection-grid-3.svg", // Tempat URL foto pouring coffee v60
-      imageBadge: "",
-    }, // Kontainer ketiga tidak memiliki foto tengah, digantikan panel rasio
+      imageSrc: unsplash("1525088553748-01d6e210e00b", 1400),
+      imageBadge: "MEDIUM ROAST",
+    },
 
     content: {
       sectionTitle: "STANDAR KALIBRASI MUTU",
@@ -146,19 +149,19 @@ export const coffeeQualitiesData: CoffeeQualitiesData[] = [
   },
   {
     id: 2,
-    icon: "herosection-footer-grid-logo-2.svg", // Tempat untuk komponen ikon jabat tangan / kerja sama (Direct Trade Berkeadilan)
+    icon: "/herosection-footer-grid-logo-2.svg", // Tempat untuk komponen ikon jabat tangan / kerja sama (Direct Trade Berkeadilan)
     title: "DIRECT TRADE BERKEADILAN",
     description: "Harga premium untuk petani lokal",
   },
   {
     id: 3,
-    icon: "herosection-footer-grid-logo-3.svg", // Tempat untuk komponen ikon mesin sangrai / tuas (Giesen Drum Roasting)
+    icon: "/herosection-footer-grid-logo-3.svg", // Tempat untuk komponen ikon mesin sangrai / tuas (Giesen Drum Roasting)
     title: "GIESEN DRUM ROASTING",
     description: "Profil kurva digital terkalibrasi",
   },
   {
     id: 4,
-    icon: "herosection-footer-grid-logo-4.svg", // Tempat untuk komponen ikon pengukur waktu / jam resting (Resting Terkontrol)
+    icon: "/herosection-footer-grid-logo-4.svg", // Tempat untuk komponen ikon pengukur waktu / jam resting (Resting Terkontrol)
     title: "RESTING TERKONTROL",
     description: "3–5 hari untuk aroma maksimal",
   },
@@ -248,7 +251,7 @@ export const products: Products[] = [
   {
     id: 1,
     type: "SINGLE ORIGIN",
-    image: "/landing-product-grid-1.svg",
+    image: unsplash("1587734195503-904fca47e0e9", 1200),
     location: "TAKENGON, ACEH • 1,500 MASL",
     title: "Aceh Gayo Wine Process",
     tags: ["Jackfruit", "Dark Cherry", "Red Wine"],
@@ -261,7 +264,7 @@ export const products: Products[] = [
   {
     id: 2,
     type: "SINGLE ORIGIN",
-    image: "/landing-product-grid-2.svg", // ganti dengan nama file foto ke-2 kamu
+    image: unsplash("1442550528053-c431ecb55509", 1200),
     location: "BONDOWOSO, JAWA TIMUR • 1,400 MASL",
     title: "Java Ijen Honey Anaerobic",
     tags: ["Floral Jasmine", "Citrus Honey", "Bergamot"],
@@ -274,7 +277,7 @@ export const products: Products[] = [
   {
     id: 3,
     type: "HOUSE BLEND",
-    image: "/landing-product-grid-3.svg", // ganti dengan nama file foto ke-3 kamu
+    image: unsplash("1610889556528-9a770e32642f", 1200),
     location: "70% TORAJA • 30% DAMPIT FINE ROBUSTA",
     title: "Nusa Espresso Blend 70:30",
     tags: ["Dark Chocolate", "Roasted Hazelnut", "Brown Sugar"],
@@ -287,7 +290,7 @@ export const products: Products[] = [
   {
     id: 4,
     type: "B2B & KEMITRAAN",
-    image: "/landing-product-grid-4.svg", // ganti dengan nama file foto ke-4 kamu
+    image: unsplash("1453614512568-c4024d13c247", 1200),
     location: "WHOLESALE • PRIVATE LABEL",
     title: "B2B Custom Roasting & White Label",
     tags: ["Custom Profile", "Private Brand", "Konsultasi Bar"],
@@ -313,24 +316,24 @@ export const testimonials: Testimonials[] = [
   {
     id: 1,
     rating: 5,
-    quote: `"Kopi Nusa Blend telah menjadi denyut nadi di espresso bar kami sejak 3 tahun lalu. Konsistensi crema dan rasa manis alaminya membuat pelanggan kafe kami selalu kembali setiap pagi."`,
-    avatar: "/landing-testi-foto-1.svg", // Sesuaikan dengan path file gambar kamu
+    quote: `Kopi Nusa Blend telah menjadi denyut nadi di espresso bar kami sejak 3 tahun lalu. Konsistensi crema dan rasa manis alaminya membuat pelanggan kafe kami selalu kembali setiap pagi.`,
+    avatar: unsplash("1522075469751-3a6694fb2f61", 300),
     name: "Rian Prasetya",
     role: "Head Brewer & Owner, Ruang Teduh Coffee",
   },
   {
     id: 2,
     rating: 5,
-    quote: `"Sebagai roaster skala rumahan dan home brewer, saya sangat menghargai transparansi cupping score dan profil origin Kopi Nusa. Java Ijen Honey Anaerobic mereka luar biasa aromatik!"`,
-    avatar: "/landing-testi-foto-2.svg",
+    quote: `Sebagai roaster skala rumahan dan home brewer, saya sangat menghargai transparansi cupping score dan profil origin Kopi Nusa. Java Ijen Honey Anaerobic mereka luar biasa aromatik!`,
+    avatar: unsplash("1494790108377-be9c29b29330", 300),
     name: "Dina Saraswati",
     role: "Q-Grader & Coffee Enthusiast, Jakarta",
   },
   {
     id: 3,
     rating: 5,
-    quote: `"Layanan private label dari Kopi Nusa sangat membantu kami meluncurkan signature blend hotel kami. Tim sangrai mereka sangat sabar dan menguasai profil rasa hingga tercapai formula ideal."`,
-    avatar: "/landing-testi-foto-3.svg",
+    quote: `Layanan private label dari Kopi Nusa sangat membantu kami meluncurkan signature blend hotel kami. Tim sangrai mereka sangat sabar dan menguasai profil rasa hingga tercapai formula ideal.`,
+    avatar: unsplash("1519085360753-af0119f7cbe7", 300),
     name: "Bambang Wicaksono",
     role: "F&B Director, Alila Hospitality Group",
   },
@@ -361,7 +364,7 @@ export const faqItems: FaqItems[] = [
     id: "faq-3",
     pertanyaan: "Berapa batas minimum pemesanan untuk kafe / B2B wholesale?",
     jawaban:
-      "Untuk kemitraan grosir atau pasokan kafe, minimum pemesanan dimulai dari 5 kg dengan harga khusus B2B. Silakan hubungi tim tim sales kami.",
+      "Untuk kemitraan grosir atau pasokan kafe, minimum pemesanan dimulai dari 5 kg dengan harga khusus B2B. Silakan hubungi tim sales kami.",
   },
   {
     id: "faq-4",
@@ -466,7 +469,7 @@ interface TeamData {
 
 export const teamData: TeamData[] = [
   {
-    foto: "/about-team-foto-1.svg",
+    foto: unsplash("1507003211169-0a1dd7228f2d", 1200),
     tag: "Q-GRADER CERTIFIED",
     role: "FOUNDER & MASTER ROASTER",
     name: "Raden Arya",
@@ -475,7 +478,7 @@ export const teamData: TeamData[] = [
     footerText: "Est. 2018 / Roasting Lab",
   },
   {
-    foto: "/about-team-foto-3.svg",
+    foto: unsplash("1534528741775-53994a69daeb", 1200),
     tag: "AGRONOMY & TRADE",
     role: "HEAD OF GREEN BEAN SOURCING",
     name: "Siti Nurhaliza",
@@ -484,7 +487,7 @@ export const teamData: TeamData[] = [
     footerText: "Origin Specialist",
   },
   {
-    foto: "/about-team-foto-2.svg",
+    foto: unsplash("1500648767791-00dcc994a43e", 1200),
     tag: "SENSORY JUDGE",
     role: "LEAD SENSORY & CUPPING",
     name: "Bima Prasetyo",
@@ -495,18 +498,21 @@ export const teamData: TeamData[] = [
 ];
 
 /*Products & services */
-// hero section
-export const categories: string[] = [
+// filter kategori (nilai harus sama dengan field `category` di productsData)
+export const categories = [
   "Semua",
   "Single Origin",
   "House Blend",
   "Layanan B2B",
   "Pelatihan Barista",
-];
+] as const;
+
+export type ProductCategory = Exclude<(typeof categories)[number], "Semua">;
 
 // products section
 interface ProductsData {
   img: string;
+  category: ProductCategory;
   tags: string[];
   rating: string;
   origin: string;
@@ -514,11 +520,13 @@ interface ProductsData {
   title: string;
   notes: string[];
   price: string;
+  unit: string;
 }
 
 export const productsData: ProductsData[] = [
   {
-    img: "/proser-hero-foto-1.svg",
+    img: unsplash("1580933073521-dc49ac0d4e6a", 1200),
+    category: "Single Origin",
     tags: ["SINGLE ORIGIN", "NATURAL"],
     rating: "4.9",
     origin: "NGADA, NTT • 1.450 MDPL",
@@ -526,9 +534,11 @@ export const productsData: ProductsData[] = [
     title: "Flores Bajawa Natural",
     notes: ["Milk Chocolate", "Floral", "Brown Sugar"],
     price: "Rp 120.000",
+    unit: "250GR",
   },
   {
-    img: "/proser-hero-foto-2.svg",
+    img: unsplash("1514432324607-a09d9b4aefdd", 1200),
+    category: "Single Origin",
     tags: ["SINGLE ORIGIN", "WASHED"],
     rating: "5.0",
     origin: "TAKENGON, ACEH • 1.600 MDPL",
@@ -536,9 +546,11 @@ export const productsData: ProductsData[] = [
     title: "Aceh Gayo Pantan Musara",
     notes: ["Blackcurrant", "Peach", "Bergamot"],
     price: "Rp 140.000",
+    unit: "250GR",
   },
   {
-    img: "/proser-hero-foto-3.svg",
+    img: unsplash("1494314671902-399b18174975", 1200),
+    category: "Single Origin",
     tags: ["SINGLE ORIGIN", "ANAEROBIC"],
     rating: "4.8",
     origin: "KINTAMANI, BALI • 1.300 MDPL",
@@ -546,9 +558,11 @@ export const productsData: ProductsData[] = [
     title: "Bali Kintamani Anaerobic",
     notes: ["Citrus Orange", "Jasmine", "Honey"],
     price: "Rp 130.000",
+    unit: "250GR",
   },
   {
-    img: "/proser-hero-foto-4.svg",
+    img: unsplash("1511920170033-f8396924c348", 1200),
+    category: "House Blend",
     tags: ["HOUSE BLEND", "ESPRESSO FOCUS"],
     rating: "4.9",
     origin: "TORAJA 70% • TEMANGGUNG 30%",
@@ -556,9 +570,11 @@ export const productsData: ProductsData[] = [
     title: "Nusa Heritage Espresso Blend",
     notes: ["Roasted Almond", "Dark Cocoa", "Caramel"],
     price: "Rp 95.000",
+    unit: "250GR",
   },
   {
-    img: "/proser-hero-foto-5.svg",
+    img: unsplash("1512568400610-62da28bc8a13", 1200),
+    category: "Single Origin",
     tags: ["SINGLE ORIGIN", "HONEY PROCESS"],
     rating: "4.7",
     origin: "GUNUNG TILU, JABAR • 1.500 MDPL",
@@ -566,9 +582,11 @@ export const productsData: ProductsData[] = [
     title: "Sunda Aromanis Honey",
     notes: ["Red Apple", "Cinnamon", "Molasses"],
     price: "Rp 125.000",
+    unit: "250GR",
   },
   {
-    img: "/proser-hero-foto-6.svg",
+    img: unsplash("1521302080334-4bebac2763a6", 1200),
+    category: "House Blend",
     tags: ["HOUSE BLEND", "LIGHT ROAST"],
     rating: "4.9",
     origin: "KERINCI WASHED • GAYO NATURAL",
@@ -576,8 +594,34 @@ export const productsData: ProductsData[] = [
     title: "Morning Breeze Filter Blend",
     notes: ["Tropical Fruit", "Lemongrass", "Sweet Cane"],
     price: "Rp 110.000",
+    unit: "250GR",
+  },
+  {
+    img: unsplash("1453614512568-c4024d13c247", 1200),
+    category: "Layanan B2B",
+    tags: ["B2B", "PRIVATE LABEL"],
+    rating: "4.9",
+    origin: "WHOLESALE • MIN. 5 KG",
+    status: "Konsultasi Gratis",
+    title: "Custom Roasting & White Label",
+    notes: ["Profil Sangrai Custom", "Desain Kemasan", "Kalibrasi Bar"],
+    price: "Rp 65.000",
+    unit: "KG",
+  },
+  {
+    img: unsplash("1541167760496-1628856ab772", 1200),
+    category: "Pelatihan Barista",
+    tags: ["KELAS", "SERTIFIKAT"],
+    rating: "5.0",
+    origin: "ROASTERY LAB BANDUNG • 2 HARI",
+    status: "Kuota 8 Orang",
+    title: "Kelas Barista Espresso & Latte Art",
+    notes: ["Dial-in Espresso", "Milk Texturing", "Latte Art"],
+    price: "Rp 1.250.000",
+    unit: "PESERTA",
   },
 ];
+
 // services section
 // 1. Data Spesifikasi Dasar (Ketinggian, Varietas, Pascapanen)
 interface SpecsData {
@@ -604,45 +648,58 @@ export const specsData: SpecsData[] = [
   },
 ];
 
-// 2. Data Tingkat Sangrai (Roast Level)
+// 2. Data Tingkat Sangrai (Roast Level) — urut dari paling terang ke paling gelap
 interface RoastLevels {
   name: string;
-  colorClass: string;
+  color: string;
   isActive?: boolean;
 }
 
 export const roastLevels: RoastLevels[] = [
-  { name: "LIGHT", colorClass: "bg-[#EADCCB] rounded-l-md" },
-  { name: "LIGHT-MEDIUM", colorClass: "bg-[#D1BCA6]" },
-  {
-    name: "MEDIUM",
-    colorClass: "bg-[#553722] ring-2 ring-[#553722] ring-offset-1 rounded-sm",
-    isActive: true,
-  },
-  { name: "MED-DARK", colorClass: "bg-[#3D2514]" },
-  { name: "DARK", colorClass: "bg-[#24140A] rounded-r-md" },
+  { name: "LIGHT", color: "#EADCCB" },
+  { name: "LIGHT-MEDIUM", color: "#D1BCA6" },
+  { name: "MEDIUM", color: "#553722", isActive: true },
+  { name: "MED-DARK", color: "#3D2514" },
+  { name: "DARK", color: "#24140A" },
 ];
 
 // 3. Data Rekomendasi Seduhan
 interface BrewingRecommendations {
-  icon: string;
+  icon: LucideIcon;
   method: string;
   detail: string;
 }
 
 export const brewingRecommendations: BrewingRecommendations[] = [
-  { icon: "☕", method: "V60 / Kalita", detail: "Rasio 1:15 • 92°C" },
-  { icon: "🧪", method: "AeroPress", detail: "Inverted • 88°C" },
-  { icon: "🍹", method: "Espresso Modern", detail: "1:2.2 • 28 detik" },
+  { icon: Coffee, method: "V60 / Kalita", detail: "Rasio 1:15 • 92°C" },
+  { icon: FlaskConical, method: "AeroPress", detail: "Inverted • 88°C" },
+  { icon: Zap, method: "Espresso Modern", detail: "1:2.2 • 28 detik" },
+];
+
+// 4. Data Flavor Radar (skala 0–10)
+export const flavorRadar = [
+  { label: "Aroma", score: 9.0 },
+  { label: "Acidity", score: 7.5 },
+  { label: "Body", score: 8.8 },
+  { label: "Sweetness", score: 9.2 },
+  { label: "Aftertaste", score: 8.6 },
 ];
 
 /*blog list */
-// blog list section
-
-export const categoriesArticle: string[] = [
+// blog list section (nilai harus sama dengan kolom `category` di tabel blog Backendless)
+export const categoriesArticle = [
   "Semua",
   "Panduan Menyeduh",
   "Catatan Roasting",
   "Kisah Petani",
   "Industri Kopi",
-];
+] as const;
+
+/* foto pendukung section */
+export const sectionImages = {
+  heroBackground: unsplash("1447933601403-0c6688de566e", 2400),
+  landingAbout: unsplash("1524350876685-274059332603", 1600),
+  aboutHero: unsplash("1497935586351-b67a49e012bf", 1600),
+  aboutBackground: unsplash("1504630083234-14187a9df0f5", 2400),
+  blogFallback: unsplash("1509042239860-f550ce710b93", 1600),
+};

@@ -1,19 +1,51 @@
-@import url("https://googleapis.com");
-
 @import "tailwindcss";
 @plugin "daisyui";
 
-@theme {
-  /* color palette */
-  /* primary */
-  --color-primary-10: #6D5A52;   /* untuk font-label */
-  --color-primary-50: #fbf9f5;   /* untuk background layout */
-  --color-primary-100: #f5f3ef;  /* untuk background layout */
-  --color-primary-150: #553722;  /* untuk font-headline */
-  --color-primary-200: #F5F3EF;  /* DIUBAH KE 200 AGAR TIDAK DUPLIKAT (untuk container kecil) */
+@theme inline {
+  /* font family (di-load lewat next/font di layout.tsx) */
+  --font-headline: var(--font-playfair), "Playfair Display", serif;
+  --font-body: var(--font-jakarta), "Plus Jakarta Sans", sans-serif;
+  --font-label: var(--font-grotesk), "Space Grotesk", sans-serif;
+}
 
-  /* font family */
-  --font-headline: "Playfair Display", serif;
-  --font-body: "Plus Jakarta Sans", sans-serif;
-  --font-label: "Space Grotesk", sans-serif;
+@theme {
+  /* === palet brand (warna sama seperti sebelumnya) === */
+  --color-primary-10: #6d5a52; /* teks label / muted (kontras 6.4:1 di putih) */
+  --color-primary-50: #fbf9f5; /* background layout */
+  --color-primary-100: #f5f3ef; /* background layout */
+  --color-primary-150: #553722; /* headline & aksi utama */
+  --color-primary-200: #f5f3ef; /* container kecil */
+
+  /* === token semantik (pengganti hex mentah di komponen) === */
+  --color-brand-dark: #40291a; /* hover tombol utama */
+  --color-ink: #1b1c1a; /* teks paling gelap */
+  --color-body: #50453e; /* teks paragraf */
+  --color-cocoa: #5e3407; /* eyebrow / badge text */
+  --color-blush: #f4dacf; /* badge & ikon background */
+  --color-sand: #efeeea; /* chip / segmented control */
+  --color-line: #efe5dc; /* border card */
+  --color-star: #d9a05b; /* rating */
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary-150);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }
