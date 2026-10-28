@@ -74,7 +74,8 @@ export function AboutHeroSection() {
 
           <Pour
             delay={0.9}
-            className="absolute -bottom-6 left-3 flex max-w-72 items-center gap-3 rounded-xl border border-line bg-white p-4 text-primary-150 shadow-xl md:-left-10"
+            wrapperClassName="absolute -bottom-6 left-3 md:-left-10"
+            className="flex max-w-72 items-center gap-3 rounded-xl border border-line bg-white p-4 text-primary-150 shadow-xl"
           >
             <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary-100">
               <ShieldCheck className="size-5 text-primary-10" aria-hidden />

@@ -44,7 +44,17 @@ export function ProserServicesSection() {
           <figure className={`${panelClass} flex flex-col items-center`}>
             <figcaption className={`${labelClass} mb-2 w-full`}>FLAVOR RADAR & CUPPING METRICS</figcaption>
             <div className="relative w-full max-w-72">
-              <svg viewBox="-10 -6 120 112" className="w-full" role="img" aria-label="Grafik radar profil rasa">
+              {/* svg yang dipantau viewport-nya, polygon ikut lewat variants
+                  (polygon ber-scale 0 tidak punya ukuran sehingga tidak pernah dianggap terlihat) */}
+              <motion.svg
+                viewBox="-24 -6 148 112"
+                className="w-full"
+                role="img"
+                aria-label="Grafik radar profil rasa"
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+              >
                 {[1, 0.66, 0.33].map((s) => (
                   <polygon key={s} points={ring(s)} fill="none" stroke="#E6DFD9" strokeWidth="0.6" />
                 ))}
@@ -55,9 +65,7 @@ export function ProserServicesSection() {
                   stroke="#553722"
                   strokeWidth="1.4"
                   strokeLinejoin="round"
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
+                  variants={{ hidden: { scale: 0, opacity: 0 }, show: { scale: 1, opacity: 1 } }}
                   transition={{ type: "spring", stiffness: 90, damping: 14, delay: 0.3 }}
                   style={{ transformOrigin: "50px 50px" }}
                 />
@@ -76,7 +84,7 @@ export function ProserServicesSection() {
                     </text>
                   );
                 })}
-              </svg>
+              </motion.svg>
             </div>
           </figure>
         </div>
@@ -102,13 +110,16 @@ export function ProserServicesSection() {
                 Development Ratio: <b className="text-primary-150">13.8%</b>
               </span>
             </div>
-            <ol className="grid grid-cols-5 gap-1 text-center font-label text-[10px] font-bold tracking-wide text-primary-10 sm:text-xs">
+            <motion.ol
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="grid grid-cols-5 gap-1 text-center font-label text-[10px] font-bold tracking-wide text-primary-10 sm:text-xs"
+            >
               {roastLevels.map((level, i) => (
                 <li key={level.name} aria-current={level.isActive ? "true" : undefined}>
                   <motion.div
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true }}
+                    variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1 } }}
                     transition={{ delay: 0.1 * i, duration: 0.4 }}
                     style={{ backgroundColor: level.color, originX: 0 }}
                     className={`mb-1.5 h-2 ${i === 0 ? "rounded-l-md" : ""} ${i === roastLevels.length - 1 ? "rounded-r-md" : ""} ${
@@ -118,7 +129,7 @@ export function ProserServicesSection() {
                   <span className={level.isActive ? "text-primary-150" : ""}>{level.name}</span>
                 </li>
               ))}
-            </ol>
+            </motion.ol>
           </div>
 
           <div className={panelClass}>
