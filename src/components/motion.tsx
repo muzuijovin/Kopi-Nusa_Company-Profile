@@ -23,22 +23,32 @@ import { useEffect, useRef, useState } from "react";
 const EASE_POUR = [0.7, 0, 0.2, 1] as const;
 const VIEWPORT = { once: true, margin: "-60px" } as const;
 
+const pourVariants: Variants = {
+  hidden: { clipPath: "inset(100% 0% 0% 0%)", y: 18 },
+  show: { clipPath: "inset(0% 0% 0% 0%)", y: 0 },
+};
+
+// Wrapper luar (tanpa clip-path) yang dipantau viewport-nya. Kalau clip-path dipasang di elemen
+// yang dipantau, browser baru menganggapnya "terlihat" saat tepi BAWAH-nya masuk layar,
+// sehingga konten yang tinggi telat muncul (atau tidak pernah muncul di layar HP).
+// `wrapperClassName` dipakai untuk posisi/layout (mis. absolute), `className` untuk tampilan.
 export function Pour({
   delay = 0,
   className,
+  wrapperClassName,
   children,
   ...rest
-}: HTMLMotionProps<"div"> & { delay?: number }) {
+}: HTMLMotionProps<"div"> & { delay?: number; wrapperClassName?: string }) {
   return (
-    <motion.div
-      initial={{ clipPath: "inset(100% 0% 0% 0%)", y: 18 }}
-      whileInView={{ clipPath: "inset(0% 0% 0% 0%)", y: 0 }}
-      viewport={VIEWPORT}
-      transition={{ duration: 0.85, ease: EASE_POUR, delay }}
-      className={className}
-      {...rest}
-    >
-      {children}
+    <motion.div initial="hidden" whileInView="show" viewport={VIEWPORT} className={wrapperClassName}>
+      <motion.div
+        variants={pourVariants}
+        transition={{ duration: 0.85, ease: EASE_POUR, delay }}
+        className={className}
+        {...rest}
+      >
+        {children}
+      </motion.div>
     </motion.div>
   );
 }
