@@ -3,24 +3,21 @@
 import { LoginAdminApi } from "@/api/loginAdminApi";
 import { LoginAdminSchema } from "@/features/validation/login-admin-schema";
 import { useMutation } from "@tanstack/react-query";
+import { isAxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-export function UseLoginAdminMutation(getValues: () => LoginAdminSchema) {
+export function UseLoginAdminMutation() {
   const router = useRouter();
 
   const { mutate: loginAdminMutation, isPending } = useMutation({
-    mutationFn: async () => {
-      const { email, password } = getValues();
-      return await LoginAdminApi({ email, password });
-    },
-    onSuccess(res: any) {
-      toast.success("login in admin mode successfull");
-
+    mutationFn: (values: LoginAdminSchema) => LoginAdminApi(values),
+    onSuccess() {
+      toast.success("Login admin berhasil");
       router.push("/admin/blog-create");
     },
-    onError(error: any) {
-      toast.error(error?.response?.data?.message);
+    onError(error) {
+      toast.error(isAxiosError(error) ? error.response?.data?.message : "Login admin gagal");
     },
   });
 
