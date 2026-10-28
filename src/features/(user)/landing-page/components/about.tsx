@@ -23,7 +23,8 @@ export function AboutHomeSection() {
 
             <Pour
               delay={0.6}
-              className="absolute inset-x-3 bottom-3 flex flex-col items-start justify-between gap-2 rounded-xl bg-white p-4 shadow-md sm:flex-row sm:items-center"
+              wrapperClassName="absolute inset-x-3 bottom-3"
+              className="flex flex-col items-start justify-between gap-2 rounded-xl bg-white p-4 shadow-md sm:flex-row sm:items-center"
             >
               <div className="flex items-center gap-3">
                 <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-blush p-2.5">
