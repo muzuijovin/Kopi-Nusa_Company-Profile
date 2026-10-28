@@ -1,190 +1,179 @@
-import { GoDotFill } from "react-icons/go";
-import { coffeeBatchData } from "@/data/data";
-import { coffeeQualitiesData } from "@/data/data";
+"use client";
+
+import { Steep, SteepItem } from "@/components/motion";
+import { coffeeBatchData, coffeeQualitiesData, sectionImages } from "@/data/data";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, CalendarDays } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
+
+const headline = "Menghidupkan Cita Rasa Tanah Nusantara";
+const headlineItalic = "dalam Setiap Biji Sangrai";
+
+// setiap kata "naik" dari balik garis seperti uap kopi
+function RisingWords({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) {
+  return (
+    <span className={className}>
+      {text.split(" ").map((word, i) => (
+        <span key={i} className="inline-block overflow-hidden pb-1 align-bottom">
+          <motion.span
+            className="inline-block"
+            initial={{ y: "110%", rotate: 6 }}
+            animate={{ y: "0%", rotate: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: delay + i * 0.06 }}
+          >
+            {word}&nbsp;
+          </motion.span>
+        </span>
+      ))}
+    </span>
+  );
+}
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.15]);
+
   return (
-    <>
-      {/* Kontainer Utama Hero: relatif dan memiliki tinggi minimum atau pasti agar bg terlihat bagus */}
-      <div className="relative min-h-[90vh] w-full flex items-center justify-center overflow-hidden bg-[#FBF9F6]">
-        {/* GAMBAR LATAR BELAKANG */}
-        {/* Menggunakan object-cover agar gambar penuh ke segala sisi layar tanpa gepeng */}
+    <section ref={sectionRef} className="relative w-full overflow-hidden bg-primary-50">
+      {/* background HD dengan parallax */}
+      <motion.div style={{ y: bgY, scale: bgScale }} className="absolute inset-0 h-[115vh]">
         <Image
-          src="/herosection-background.png"
-          alt="bg"
+          src={sectionImages.heroBackground}
+          alt=""
           fill
-          className="absolute inset-0 w-full h-full object-cover z-0 opacity-50 pointer-events-none"
+          preload
+          quality={90}
+          sizes="100vw"
+          className="object-cover opacity-25"
         />
+      </motion.div>
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-primary-50/40 via-primary-50/70 to-primary-50" />
 
-        {/* LAPISAN OVERLAY (Opsional: untuk memastikan teks lebih terbaca jika gambarnya terlalu ramai) */}
-        <div className="absolute inset-0 g-linear-to-b from-white/30 via-transparent to-white/10 z-10 pointer-events-none" />
-
-        {/* Kiri (Menggelap ke arah kiri) */}
-        <div className="absolute inset-y-0 left-0 w-1/4 md:w-1/3 bg-linear-to-r from-black/40 to-transparent z-10 pointer-events-none" />
-
-        {/* Kanan (Menggelap ke arah kanan) */}
-        <div className="absolute inset-y-0 right-0 w-1/4 md:w-1/3 g-linear-to-l from-black/40 to-transparent z-10 pointer-events-none" />
-
-        {/* Gradasi Bawah Menyatu ke Krem [#F5F3EF] === */}
-        <div className="absolute bottom-0 inset-x-0 h-32 bg-linear-to-t from-primary-50 to-transparent z-10 pointer-events-none" />
-
-        {/* KONTEN TEKS (Berada di atas gambar berkat z-20) */}
-        <div
-          id="heroSection"
-          className="relative z-20 w-full mx-auto px-12 py-24 text-center flex flex-col items-center justify-center gap-6"
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-4 pb-20 pt-16 text-center md:px-6 md:pt-24">
+        {/* badge */}
+        <motion.p
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ type: "spring", stiffness: 200, damping: 18 }}
+          className="flex items-center gap-2 rounded-full bg-blush px-4 py-1.5 font-label text-xs font-semibold tracking-widest text-cocoa shadow-sm"
         >
-          {/* Badge: Roastery Artisanal */}
-          <div className="flex justify-center items-center py-1.5 px-4 bg-[#F4DACF] rounded-full shadow-sm">
-            <GoDotFill className="w-3 h-3 text-[#A36A4F] mr-2" />
-            <h1 className="font-label font-semibold text-xs tracking-widest text-[#5E3407]">
-              ROASTERY ARTISANAL INDONESIA • EST. 2018
-            </h1>
-          </div>
+          <span className="relative flex size-2">
+            <span className="absolute inline-flex size-full animate-ping rounded-full bg-cocoa/50 motion-reduce:animate-none" />
+            <span className="relative inline-flex size-2 rounded-full bg-cocoa" />
+          </span>
+          ROASTERY ARTISANAL INDONESIA • EST. 2018
+        </motion.p>
 
-          {/* Heading Utama (H1) */}
-          <div className="max-w-4xl">
-            <h1 className="font-headline font-semibold text-4xl md:text-[56px] leading-tight text-primary-150">
-              Menghidupkan Cita Rasa Tanah Nusantara{" "}
-              <i className="font-headline italic font-normal text-primary-150">
-                dalam Setiap Biji Sangrai
-              </i>
-            </h1>
-          </div>
+        <h1 className="max-w-4xl font-headline text-4xl font-semibold leading-tight text-primary-150 md:text-[56px]">
+          <RisingWords text={headline} />
+          <RisingWords text={headlineItalic} className="font-normal italic" delay={0.3} />
+        </h1>
 
-          {/* Sub-heading (H3) */}
-          <div className="max-w-2xl">
-            <p className="font-body text-sm md:text-[16px] leading-relaxed text-[#50453E] opacity-90">
-              Kurasi biji kopi specialty dari lereng vulkanik Gayo hingga
-              dataran tinggi Kintamani. Disangrai presisi dalam mikro-batch demi
-              memancarkan karakter jujur bumi dan kemanisan alami setiap origin.
-            </p>
-          </div>
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.6 }}
+          className="max-w-2xl text-base leading-relaxed text-body"
+        >
+          Kurasi biji kopi specialty dari lereng vulkanik Gayo hingga dataran tinggi Kintamani.
+          Disangrai presisi dalam mikro-batch demi memancarkan karakter jujur bumi dan kemanisan alami
+          setiap origin.
+        </motion.p>
 
-          <div className="max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-3">
-            <Link href="">
-              <div className="flex justify-center items-center gap-2 py-3.5 px-8 bg-primary-150 rounded-lg hover:shadow-md">
-                <img src="/herosection-eksplor-1.svg" alt="logo" />
-                <h1 className="font-label font-medium text-[14px] text-[#FFFFFF]">
-                  EKSPLORASI VARIAN BIJI SANGRAI
-                </h1>
-                <img src="/herosection-eksplor-2.svg" alt="logo" />
-              </div>
-            </Link>
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.85, duration: 0.6 }}
+          className="flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row"
+        >
+          <Link
+            href="/products-services"
+            className="group flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary-150 px-7 font-label text-sm font-medium text-white shadow-md transition-colors hover:bg-brand-dark"
+          >
+            EKSPLORASI VARIAN BIJI SANGRAI
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
+          </Link>
+          <Link
+            href="/about-us"
+            className="flex min-h-12 items-center justify-center gap-2 rounded-lg border border-line bg-white/80 px-7 font-label text-sm font-semibold text-primary-150 backdrop-blur transition-colors hover:bg-white"
+          >
+            <CalendarDays className="size-4" aria-hidden />
+            JADWAL CUPPING & KEMITRAAN
+          </Link>
+        </motion.div>
 
-            <Link href="">
-              <div className="flex justify-center items-center gap-2 py-3.5 px-8 bg-primary-200 rounded-lg hover:shadow-md">
-                <img src="/herosection-jadwal.svg" alt="logo" />
-                <h1 className="font-label font-semibold text-[14px] text-primary-150">
-                  JADWAL CUPPING & KEMITRAAN
-                </h1>
-              </div>
-            </Link>
-          </div>
-
-          {/* container grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
-            {coffeeBatchData.map((item) => {
-              return (
-                <div key={item?.id} className="bg-[#ffff] rounded-lg p-6.25">
-                  <div className="mb-4 flex justify-between items-center border-b pb-2.5">
-                    <div className="flex gap-2">
-                      <img src={item?.header?.minilogo} alt="logokecil" />
-                      <h1 className="font-label font-bold text-[10px] text-primary-10">
-                        {item?.header?.title}
-                      </h1>
-                    </div>
-
-                    <div className="rounded-xl bg-[#F4DACF] px-1 py-.5 ">
-                      <h1 className="font-label font-bold text-[11px] text-[#5E3407]">
-                        {item?.header?.badgeText}
-                      </h1>
-                    </div>
-                  </div>
-
-                  <div className="group rounded-xl overflow-hidden h-max relative mb-4">
-                    <div className="absolute bottom-2 left-2 bg-primary-200 rounded-xl px-2 py-1 cursor-pointer">
-                      <h1 className="font-label font-bold text-[10px] text-primary-150">
-                        {item?.media?.imageBadge}
-                      </h1>
-                    </div>
-                    <img
-                      src={item?.media?.imageSrc}
-                      alt="foto"
-                      className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-1.5 border-b items-start">
-                    <h1 className="font-label font-bold text-[10px] text-primary-10">
-                      {item?.content?.sectionTitle}
-                    </h1>
-                    <h1 className="font-headline font-bold text-[22px] text-primary-150">
-                      {item?.content?.mainTitle}
-                    </h1>
-                    <div className="flex gap-1.5 pb-8">
-                      <div className="bg-[#EFEEEA] px-3 py-1.5 rounded-xl">
-                        <h1 className="font-body text-[#50453E] text-[13px]">
-                          {item?.content?.tags[0]}
-                        </h1>
-                      </div>
-                      <div className="bg-[#EFEEEA] px-3 py-1.5 rounded-xl flex">
-                        <h1 className="font-body text-[#50453E] text-[13px]">
-                          {item?.content?.tags[1]}
-                        </h1>
-                      </div>
-                      <div className="bg-[#EFEEEA] px-3 py-1.5 rounded-xl">
-                        <h1 className="font-body text-[#50453E] text-[13px]">
-                          {item?.content?.tags[2]}
-                        </h1>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-between mt-3">
-                    <div className="flex gap-2">
-                      <img
-                        src={item?.footer?.leftInfo?.minilogo}
-                        alt="logo kecil"
-                      />
-                      <h1 className="font-body font-medium text-primary-10 text-xs">
-                        {item?.footer?.leftInfo?.text}
-                      </h1>
-                    </div>
-
-                    <h1 className="font-body font-semibold text-xs text-primary-150">
-                      {item?.footer?.rightInfo?.text}
-                    </h1>
-                  </div>
+        {/* kartu batch */}
+        <Steep className="mt-10 grid w-full grid-cols-1 gap-6 text-left md:grid-cols-2 lg:grid-cols-3">
+          {coffeeBatchData.map((item, index) => (
+            <SteepItem
+              key={item.id}
+              className="flex flex-col rounded-2xl border border-line bg-white p-6 shadow-sm"
+            >
+              <div className="mb-4 flex items-center justify-between border-b border-line pb-3">
+                <div className="flex items-center gap-2">
+                  <Image src={item.header.minilogo} alt="" width={16} height={16} />
+                  <h2 className="font-label text-xs font-bold text-primary-10">{item.header.title}</h2>
                 </div>
-              );
-            })}
-          </div>
+                <span className="rounded-full bg-blush px-2.5 py-0.5 font-label text-xs font-bold text-cocoa">
+                  {item.header.badgeText}
+                </span>
+              </div>
 
-          <div className="bg-primary-200 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-6 gap-6 px-6 w-full rounded-lg">
-            {coffeeQualitiesData.map((item) => {
-              return (
-                <div
-                  key={item?.id}
-                  className="flex flex-col items-center justify-center gap-2"
-                >
-                  <div className="flex gap-2">
-                    <img src={item?.icon} alt="logo footer" />
-                    <h1 className="font-label font-bold text-xs text-primary-150">
-                      {item?.title}
-                    </h1>
-                  </div>
+              <div className="group relative mb-4 aspect-4/3 overflow-hidden rounded-xl">
+                <Image
+                  src={item.media.imageSrc}
+                  alt={item.content.mainTitle}
+                  fill
+                  quality={90}
+                  preload={index === 0}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+                <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-1 font-label text-xs font-bold text-primary-150 backdrop-blur">
+                  {item.media.imageBadge}
+                </span>
+              </div>
 
-                  <h1 className="font-body text-[13px] text-primary-10">
-                    {item?.description}
-                  </h1>
+              <p className="font-label text-xs font-bold text-primary-10">{item.content.sectionTitle}</p>
+              <h3 className="mt-1 font-headline text-[22px] font-bold text-primary-150">
+                {item.content.mainTitle}
+              </h3>
+              <ul className="mt-3 flex flex-wrap gap-1.5 border-b border-line pb-5">
+                {item.content.tags.map((tag) => (
+                  <li key={tag} className="rounded-full bg-sand px-3 py-1 text-[13px] text-body">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-4 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Image src={item.footer.leftInfo.minilogo} alt="" width={16} height={16} />
+                  <span className="text-xs font-medium text-primary-10">{item.footer.leftInfo.text}</span>
                 </div>
-              );
-            })}
-          </div>
-        </div>
+                <span className="text-xs font-semibold text-primary-150">{item.footer.rightInfo.text}</span>
+              </div>
+            </SteepItem>
+          ))}
+        </Steep>
+
+        {/* strip kualitas */}
+        <Steep className="grid w-full grid-cols-1 gap-6 rounded-2xl bg-primary-200 px-6 py-6 sm:grid-cols-2 lg:grid-cols-4">
+          {coffeeQualitiesData.map((item) => (
+            <SteepItem key={item.id} className="flex flex-col items-center gap-1.5">
+              <div className="flex items-center gap-2">
+                <Image src={item.icon} alt="" width={20} height={20} />
+                <h2 className="font-label text-xs font-bold text-primary-150">{item.title}</h2>
+              </div>
+              <p className="text-[13px] text-primary-10">{item.description}</p>
+            </SteepItem>
+          ))}
+        </Steep>
       </div>
-    </>
+    </section>
   );
 }
