@@ -1,180 +1,138 @@
 "use client";
-import { productsData } from "@/data/data";
-import { categories } from "@/data/data";
+import { CountUp, Pour } from "@/components/motion";
+import { FilterTabs } from "@/components/filter-tabs";
+import { SectionHeading } from "@/components/section-heading";
+import { categories, productsData } from "@/data/data";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, Star } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
-import { FaStar } from "react-icons/fa";
 
 export function ProserProductsSection() {
-  // State untuk melacak kategori filter yang aktif saat diklik
-  const [activeTab, setActiveTab] = useState("Semua");
+  const [activeTab, setActiveTab] = useState<string>("Semua");
+  const filtered =
+    activeTab === "Semua" ? productsData : productsData.filter((p) => p.category === activeTab);
 
   return (
-    <>
-      <div className="p-6 md:p-12 bg-primary-50 h-max mx-auto">
-        {/* 1. Efek Pendaran Cahaya BG Lembut (Menciptakan gradasi estetik di pojok kanan atas) */}
-        <div className="absolute top-40 right-0 w-175 h-125 rounded-full bg-[radial-gradient(circle,rgba(244,218,207,0.35)_0%,rgba(244,218,207,0.1)_60%,transparent_100%)] pointer-events-none z-0" />
+    <section className="relative overflow-hidden bg-primary-50 px-4 py-20 md:px-6 md:py-24">
+      <div className="pointer-events-none absolute -right-40 top-20 h-125 w-175 rounded-full bg-[radial-gradient(circle,rgba(244,218,207,0.45)_0%,rgba(244,218,207,0.1)_60%,transparent_100%)]" />
 
-        {/* Wrapper Konten Utama */}
-        <div className="relative z-10 w-full flex flex-col md:flex-row md:justify-between md:items-start gap-8 mb-12">
-          {/* Kolom Kiri: Teks Heading dan Deskripsi */}
-          <div className="flex flex-col items-start max-w-161.25">
-            {/* Badge Tagline Atas */}
-            <div className="flex items-center gap-1.5 bg-[#F4DACF]/60 px-3 py-1.5 rounded-full mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#725F56]" />
-              <span className="font-label font-bold text-[10px] text-[#725F56] tracking-[1px] uppercase leading-3.5">
-                Kurasi Biji Kopi & Solusi Kafe
-              </span>
-            </div>
+      <div className="relative mx-auto max-w-7xl">
+        <div className="mb-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <SectionHeading
+            as="h1"
+            align="left"
+            eyebrow="Kurasi biji kopi & solusi kafe"
+            title="Layanan & Produk Sangrai Unggulan"
+            description="Dari lereng vulkanik Nusantara langsung ke roastery kami di Bandung. Pilihan single origin berkarakter kuat, house blend presisi, dan kemitraan wholesale berstandar specialty."
+          />
 
-            {/* Judul Utama Section */}
-            <h1 className="font-headline font-semibold text-[40px] text-primary-150 leading-12 tracking-[-1px] mb-4">
-              Layanan & Produk Sangrai Unggulan
-            </h1>
-
-            {/* Deskripsi Tubuh Teks */}
-            <p className="font-body font-normal text-[18px] text-[#50453E] leading-7 tracking-normal">
-              Dari lereng vulkanik Nusantara langsung ke roastery kami di
-              Bandung. Pilihan single origin berkarakter kuat, house blend
-              presisi, dan ekosistem kemitraan wholesale berstandar specialty.
-            </p>
-          </div>
-
-          {/* Kolom Kanan: Kotak Ringkasan Statistik (Stats Card B2B) */}
-          <div className="bg-[#FAF4EE]/70 backdrop-blur-sm border border-[#EFE5DC] rounded-xl p-6 flex items-center justify-between gap-8 min-w-70">
-            {/* Statistik 1 */}
-            <div className="flex flex-col items-start">
-              <span className="font-headline font-medium text-[32px] text-primary-150 leading-9.5">
-                14+
-              </span>
-              <span className="font-label font-bold text-[10px] text-primary-10 tracking-[0.5px] uppercase leading-3.5 mt-1">
+          <Pour delay={0.2} className="flex min-w-70 items-center justify-between gap-8 rounded-2xl border border-line bg-white/70 p-6 backdrop-blur-sm">
+            <div className="flex flex-col">
+              <CountUp value="14+" className="font-headline text-[32px] font-medium text-primary-150" />
+              <span className="mt-1 font-label text-xs font-bold uppercase tracking-wide text-primary-10">
                 Origin Terpilih
               </span>
             </div>
-
-            {/* Garis Pembatas Vertikal Ringan */}
-            <div className="h-10 w-px bg-[#E2D4C9]" />
-
-            {/* Statistik 2 */}
-            <div className="flex flex-col items-start">
-              <span className="font-headline font-medium text-[32px] text-primary-150 leading-9.5">
-                120+
-              </span>
-              <span className="font-label font-bold text-[10px] text-primary-10 tracking-[0.5px] uppercase leading-3.5 mt-1">
+            <div className="h-10 w-px bg-line" />
+            <div className="flex flex-col">
+              <CountUp value="120+" className="font-headline text-[32px] font-medium text-primary-150" />
+              <span className="mt-1 font-label text-xs font-bold uppercase tracking-wide text-primary-10">
                 Mitra Kafe B2B
               </span>
             </div>
-          </div>
+          </Pour>
         </div>
 
-        {/* 2. Menu Navigasi Filter Kategori Kopi (Looping Array) */}
-        <div className="relative z-10 flex flex-wrap gap-3 items-center w-full border-b border-[#EFE5DC] pb-4 mb-12">
-          {categories.map((tab) => {
-            const isActive = activeTab === tab;
-            return (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 rounded-full font-label text-[12px] font-semibold tracking-[0.6px] leading-4 transition-all duration-200 cursor-pointer ${
-                  isActive
-                    ? "bg-primary-150 text-white shadow-sm"
-                    : "bg-[#F2ECE6]/50 text-[#1B1C1A] hover:bg-[#EAE1D9]"
-                }`}
+        <FilterTabs
+          label="Filter kategori produk"
+          tabs={categories}
+          active={activeTab}
+          onChange={setActiveTab}
+          className="mb-10 border-b border-line pb-5"
+        />
+
+        <motion.ul layout className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((item, i) => (
+              <motion.li
+                key={item.title}
+                layout
+                initial={{ opacity: 0, y: 40, rotateX: 14, transformPerspective: 900 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+                transition={{ type: "spring", stiffness: 140, damping: 20, delay: i * 0.05 }}
+                className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
               >
-                {tab}
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-8 py-6 bg-[#FCF8F4]">
-          {productsData.map((item, index) => (
-            <div
-              key={index}
-              className="bg-white border border-[#EFE5DC] rounded-2xl overflow-hidden flex flex-col p-4 shadow-sm hover:shadow-md transition-shadow"
-            >
-              {/* 1. Bagian Foto & Badge Atas */}
-              <div className="group relative w-full aspect-4/3 rounded-xl overflow-hidden mb-4">
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                {/* Sisi Kiri Atas: Kumpulan Badge */}
-                <div className="absolute top-3 left-3 flex gap-1.5 z-10">
-                  {item.tags.map((tag, tagIdx) => (
-                    <span
-                      key={tagIdx}
-                      className={`text-[9px] font-label font-bold tracking-[0.5px] px-2 py-1 rounded uppercase ${
-                        tagIdx === 0
-                          ? "bg-primary-150 text-white"
-                          : "bg-white/80 text-primary-150 backdrop-blur-sm"
-                      }`}
-                    >
-                      {tag}
+                <div className="group relative mb-4 aspect-4/3 w-full overflow-hidden rounded-xl">
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    quality={90}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute left-3 top-3 flex gap-1.5">
+                    {item.tags.map((tag, tagIdx) => (
+                      <span
+                        key={tag}
+                        className={`rounded px-2 py-1 font-label text-xs font-bold uppercase tracking-wide ${
+                          tagIdx === 0 ? "bg-primary-150 text-white" : "bg-white/90 text-primary-150 backdrop-blur-sm"
+                        }`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="absolute bottom-3 right-3 flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-primary-150 shadow-sm backdrop-blur-sm">
+                    <Star className="size-3.5 fill-star text-star" aria-hidden />
+                    <span className="font-label text-xs font-bold">
+                      <span className="sr-only">Rating </span>
+                      {item.rating}
                     </span>
+                  </span>
+                </div>
+
+                <div className="mb-2 flex items-center justify-between gap-2 px-1">
+                  <span className="font-label text-xs font-bold uppercase tracking-wide text-primary-10">
+                    {item.origin}
+                  </span>
+                  <span className="shrink-0 text-xs font-medium text-cocoa">{item.status}</span>
+                </div>
+
+                <h2 className="mb-3 px-1 font-headline text-[22px] font-semibold leading-7 text-ink">{item.title}</h2>
+
+                <ul className="mb-6 flex flex-wrap gap-1.5 px-1">
+                  {item.notes.map((note) => (
+                    <li key={note} className="rounded-md border border-line bg-primary-50 px-2.5 py-1 text-xs font-medium text-body">
+                      {note}
+                    </li>
                   ))}
-                </div>
-                {/* Sisi Kanan Bawah: Rating Bintang */}
-                <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm z-10 text-primary-150">
-                  <FaStar className="w-3 h-3 text-[#D9A05B]" />
-                  <span className="font-label font-bold text-[11px] leading-none pt-px">
-                    {item.rating}
-                  </span>
-                </div>
-              </div>
+                </ul>
 
-              {/* 2. Informasi Origin & Ketinggian */}
-              <div className="flex justify-between items-center w-full mb-2 px-1">
-                <span className="font-label text-[10px] font-bold text-[#8C847E] tracking-[0.5px] uppercase">
-                  {item.origin}
-                </span>
-                <span className="font-body text-[10px] font-medium text-[#A69C95]">
-                  {item.status}
-                </span>
-              </div>
-
-              {/* 3. Judul Utama Kopi */}
-              <h3 className="font-headline font-semibold text-[22px] text-[#2C1F17] leading-7 mb-3 px-1">
-                {item.title}
-              </h3>
-
-              {/* 4. Notes Karakter Rasa (Tasting Notes) */}
-              <div className="flex flex-wrap gap-1.5 mb-6 px-1">
-                {item.notes.map((note, noteIdx) => (
-                  <span
-                    key={noteIdx}
-                    className="bg-[#FAF4EE] border border-[#EFE5DC] text-[#726156] font-body text-[11px] font-medium px-2.5 py-1 rounded-md"
+                <div className="mt-auto flex w-full items-end justify-between border-t border-line px-1 pt-3">
+                  <div className="flex flex-col">
+                    <span className="font-label text-xs font-bold uppercase tracking-wider text-primary-10">
+                      Harga / {item.unit}
+                    </span>
+                    <span className="mt-1 font-label text-base font-bold text-primary-150">{item.price}</span>
+                  </div>
+                  <Link
+                    href="#detail-produk"
+                    aria-label={`Lihat detail ${item.title}`}
+                    className="group/btn flex min-h-11 items-center gap-1 rounded-lg px-3 font-label text-xs font-bold tracking-wide text-primary-150 transition-colors hover:bg-primary-100"
                   >
-                    {note}
-                  </span>
-                ))}
-              </div>
-
-              {/* 5. Bagian Footer Card: Harga & Tombol */}
-              <div className="mt-auto pt-3 border-t border-[#F2ECE6] flex justify-between items-end w-full px-1">
-                <div className="flex flex-col items-start">
-                  <span className="font-label text-[9px] font-bold text-[#A69C95] tracking-[1px] uppercase">
-                    HARGA 250GR
-                  </span>
-                  <span className="font-label font-bold text-[16px] text-primary-150 leading-none mt-1">
-                    {item.price}
-                  </span>
+                    Lihat Detail
+                    <ArrowRight className="size-3.5 transition-transform group-hover/btn:translate-x-0.5" aria-hidden />
+                  </Link>
                 </div>
-
-                <button className="flex items-center gap-1 font-label text-[11px] font-bold text-primary-150 tracking-[0.5px] hover:text-[#D9A05B] transition-colors cursor-pointer group">
-                  Lihat Detail
-                  <span className="transform group-hover:translate-x-0.5 transition-transform">
-                    →
-                  </span>
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+              </motion.li>
+            ))}
+          </AnimatePresence>
+        </motion.ul>
       </div>
-    </>
+    </section>
   );
 }

@@ -2,23 +2,21 @@
 import { RegisterApi } from "@/api/registerApi";
 import { RegisterSchema } from "@/features/validation/register-schema";
 import { useMutation } from "@tanstack/react-query";
+import { isAxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-export function UseRegisterMutation(getValues: () => RegisterSchema) {
+export function UseRegisterMutation() {
   const router = useRouter();
 
   const { mutate: registerMutation, isPending } = useMutation({
-    mutationFn: async () => {
-      const { username, email, password } = getValues();
-      return await RegisterApi({ username, email, password });
-    },
-    onSuccess(res: any) {
+    mutationFn: (values: RegisterSchema) => RegisterApi(values),
+    onSuccess() {
       router.push("/login");
-      toast.success("registration successfull");
+      toast.success("Registrasi berhasil, silakan masuk.");
     },
-    onError(error: any) {
-      toast.error(error?.response?.data?.message);
+    onError(error) {
+      toast.error(isAxiosError(error) ? error.response?.data?.message : "Registrasi gagal");
     },
   });
 

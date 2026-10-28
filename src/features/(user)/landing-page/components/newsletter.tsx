@@ -1,123 +1,125 @@
 "use client";
+import { Pour } from "@/components/motion";
 import { faqItems } from "@/data/data";
+import { AnimatePresence, motion } from "framer-motion";
+import { BadgeCheck, ChevronDown, Truck } from "lucide-react";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function NewsletterAndFaq() {
-  return (
-    <section className="bg-[#F5F3EF] px-12 py-24 md:px-24 w-full min-h-screen flex flex-col lg:flex-row gap-12 items-start justify-center">
-      {/* KIRI: SEKSI BULETIN / KARTU LANGGANAN */}
-      <div className="bg-white rounded-2xl p-8 md:p-10 shadow-sm max-w-136 w-full flex flex-col gap-6">
-        <div className="flex flex-col gap-2">
-          <span className="text-[10px] font-semibold tracking-wider text-primary-10 uppercase font-label">
-            Buletin Rasa Nusantara
-          </span>
-          <h2 className="text-[28px] font-bold leading-9 text-primary-150 font-headline">
-            Dapatkan Diskon 15% untuk Pesanan Pertama Anda
-          </h2>
-          <p className="text-[15px] leading-6 text-[#50453E] font-body mt-2">
-            Daftar ke buletin mingguan kami untuk jadwal rilis lot panen mikro
-            terbaru, panduan seduh manual dari Q-Grader, serta voucher
-            eksklusif.
-          </p>
-        </div>
+  const [openId, setOpenId] = useState<string | null>(faqItems[0]?.id ?? null);
+  const [email, setEmail] = useState("");
 
-        {/* Form Menggunakan daisyUI Fieldset & Input Text Legend */}
-        <form onSubmit={(e) => e.preventDefault()} className="w-full">
-          <fieldset className="fieldset relative w-full border border-base-300 rounded-lg px-3 pb-2 pt-1 focus-within:border-primary-150">
-            <legend className="fieldset-legend text-xs px-1 text-base-content/60 font-body">
-              Masukkan alamat email Anda
-            </legend>
-            <div className="flex w-full items-center justify-between gap-2 mt-1">
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success(`Terima kasih! Voucher 15% dikirim ke ${email}`);
+    setEmail("");
+  };
+
+  return (
+    <section className="bg-primary-100 px-4 py-20 md:px-6 md:py-28">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-12 lg:grid-cols-2">
+        {/* KIRI: KARTU LANGGANAN */}
+        <Pour className="flex flex-col gap-6 rounded-2xl bg-white p-8 shadow-sm md:p-10">
+          <div className="flex flex-col gap-2">
+            <span className="font-label text-xs font-semibold uppercase tracking-wider text-primary-10">
+              Buletin Rasa Nusantara
+            </span>
+            <h2 className="font-headline text-[28px] font-bold leading-9 text-primary-150">
+              Dapatkan Diskon 15% untuk Pesanan Pertama Anda
+            </h2>
+            <p className="mt-2 text-[15px] leading-6 text-body">
+              Daftar ke buletin mingguan kami untuk jadwal rilis lot panen mikro terbaru, panduan seduh
+              manual dari Q-Grader, serta voucher eksklusif.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
+            <label htmlFor="newsletter-email" className="text-sm font-medium text-ink">
+              Alamat email
+            </label>
+            <div className="flex flex-col gap-2 sm:flex-row">
               <input
+                id="newsletter-email"
                 type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="email@contoh.com"
-                className="input input-ghost w-full focus:bg-transparent focus:outline-none p-0 h-9 text-[15px] font-body"
+                autoComplete="email"
+                className="input min-h-12 w-full rounded-lg border-line bg-primary-50 text-base focus:border-primary-150"
               />
               <button
                 type="submit"
-                className="flex justify-center items-center w-20 md:w-25 bg-primary-150 hover:bg-[#40291a] text-white border-none rounded px-6 min-h-0 h-10 font-medium tracking-wider text-[8px] md:text-xs uppercase font-label"
+                className="min-h-12 shrink-0 cursor-pointer rounded-lg bg-primary-150 px-6 font-label text-xs font-medium uppercase tracking-wider text-white transition-colors hover:bg-brand-dark"
               >
                 Langganan
               </button>
             </div>
-          </fieldset>
-        </form>
+            <p className="text-xs leading-5 text-primary-10">
+              Kami menghargai privasi Anda. Tanpa spam, berhenti berlangganan kapan saja.
+            </p>
+          </form>
 
-        <p className="text-xs leading-5 text-base-content/50 font-body">
-          Kami menghargai privasi Anda. Tanpa spam. Anda dapat berhenti
-          berlangganan kapan saja.
-        </p>
+          <ul className="flex flex-wrap gap-6 border-t border-line pt-4 text-xs text-body">
+            <li className="flex items-center gap-2">
+              <Truck className="size-4" aria-hidden />
+              Bebas Ongkir se-Jawa
+            </li>
+            <li className="flex items-center gap-2">
+              <BadgeCheck className="size-4" aria-hidden />
+              Garansi Sangrai Baru
+            </li>
+          </ul>
+        </Pour>
 
-        {/* Fitur / Benefit Mini */}
-        <div className="flex flex-wrap gap-6 pt-4 border-t border-base-100 text-xs text-[#50453E] font-body">
-          <div className="flex items-center gap-2">
-            <svg
-              xmlns="http://w3.org"
-              className="h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
-              />
-            </svg>
-            <span>Bebas Ongkir se-Jawa</span>
+        {/* KANAN: FAQ */}
+        <div className="flex flex-col gap-6">
+          <Pour className="flex flex-col gap-1">
+            <span className="font-label text-xs font-semibold uppercase tracking-wider text-primary-10">
+              Pertanyaan Umum
+            </span>
+            <h2 className="font-headline text-[28px] font-bold text-primary-150">
+              Hal yang Sering Ditanyakan
+            </h2>
+          </Pour>
+
+          <div className="flex flex-col gap-3">
+            {faqItems.map((item) => {
+              const isOpen = openId === item.id;
+              return (
+                <div key={item.id} className="overflow-hidden rounded-xl border border-line bg-white shadow-sm">
+                  <h3>
+                    <button
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-controls={`${item.id}-panel`}
+                      onClick={() => setOpenId(isOpen ? null : item.id)}
+                      className="flex min-h-14 w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left font-label text-sm font-bold tracking-wide text-primary-150"
+                    >
+                      {item.pertanyaan}
+                      <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.25 }}>
+                        <ChevronDown className="size-5 shrink-0" aria-hidden />
+                      </motion.span>
+                    </button>
+                  </h3>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        id={`${item.id}-panel`}
+                        initial={{ clipPath: "inset(0% 0% 100% 0%)", opacity: 0 }}
+                        animate={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }}
+                        exit={{ clipPath: "inset(0% 0% 100% 0%)", opacity: 0, transition: { duration: 0.15 } }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p className="px-5 pb-5 text-[15px] leading-6 text-body">{item.jawaban}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
-          <div className="flex items-center gap-2">
-            <svg
-              xmlns="http://w3.org"
-              className="h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-              />
-            </svg>
-            <span>Garansi Sangrai Baru</span>
-          </div>
-        </div>
-      </div>
-
-      {/* KANAN: SEKSI FAQ (PERTANYAAN UMUM) */}
-      <div className="max-w-137.5 w-full flex flex-col gap-6">
-        <div className="flex flex-col gap-1">
-          <span className="text-[10px] font-semibold tracking-wider text-primary-10 uppercase font-label">
-            Pertanyaan Umum
-          </span>
-          <h2 className="text-[28px] font-bold text-primary-150 font-headline">
-            Hal yang Sering Ditanyakan
-          </h2>
-        </div>
-
-        {/* Daftar Accordion daisyUI */}
-        <div className="flex flex-col gap-3 w-full">
-          {faqItems.map((item, index) => (
-            <div
-              key={item.id}
-              className="collapse collapse-arrow bg-white rounded-xl border border-base-100 shadow-sm transition-all duration-200"
-            >
-              {/* Radio input dengan name yang sama agar efek accordion (hanya 1 terbuka) bekerja */}
-              <input
-                type="radio"
-                name="faq-accordion"
-                defaultChecked={index === 0}
-              />
-              <div className="collapse-title text-[14px] font-bold ext-primary-150 font-label tracking-[0.56px] py-4">
-                {item.pertanyaan}
-              </div>
-              <div className="collapse-content text-[15px] text-[#50453E] font-body leading-6">
-                <p>{item.jawaban}</p>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </section>

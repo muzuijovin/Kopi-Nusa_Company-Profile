@@ -7,6 +7,7 @@ interface UseAuthStore {
   email: string;
   objectId: string;
   setUserAuthStore: (username: string, email: string, objectId: string) => void;
+  clearUserAuthStore: () => void;
 }
 
 export const useAuthStore = create<UseAuthStore>()(
@@ -16,12 +17,8 @@ export const useAuthStore = create<UseAuthStore>()(
       email: "",
       objectId: "",
 
-      setUserAuthStore: (username, email, objectId) =>
-        set({
-          username,
-          email,
-          objectId,
-        }),
+      setUserAuthStore: (username, email, objectId) => set({ username, email, objectId }),
+      clearUserAuthStore: () => set({ username: "", email: "", objectId: "" }),
     }),
     {
       name: "auth",

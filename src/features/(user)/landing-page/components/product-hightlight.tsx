@@ -1,129 +1,107 @@
+import { Pour, Steep, SteepItem } from "@/components/motion";
+import { SectionHeading } from "@/components/section-heading";
 import { products } from "@/data/data";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export function ProductSection() {
   return (
-    <>
-      <div className="bg-primary-200 h-max mx-auto px-12 py-28">
-        <div className="flex justify-between items-center">
-          <div className="">
-            <h2 className="font-label font-bold text-[8px] md:text-xs text-[#5E3407]">
-              PILIHAN KURASI ROASTER
-            </h2>
-            <h1 className="font-headline font-bold text-[17px] md:text-[40px] text-primary-150">
-              Biji Kopi Unggulan & Layanan Khusus
-            </h1>
-          </div>
-
-          <h1 className="lg:max-w-md font-body text-[10px] md:text-[13px] text-[#50453E]">
-            Tersedia dalam kemasan retail siap seduh dan opsi pemesanan partai
-            besar (B2B wholesale) untuk kebutuhan kafe maupun korporasi.
-          </h1>
+    <section className="bg-primary-200 px-4 py-20 md:px-6 md:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <SectionHeading
+            align="left"
+            eyebrow="Pilihan kurasi roaster"
+            title="Biji Kopi Unggulan & Layanan Khusus"
+          />
+          <Pour delay={0.2} className="max-w-md">
+            <p className="text-[15px] leading-relaxed text-body">
+              Tersedia dalam kemasan retail siap seduh dan opsi pemesanan partai besar (B2B
+              wholesale) untuk kebutuhan kafe maupun korporasi.
+            </p>
+          </Pour>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        <Steep className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((item) => (
-            <div key={item?.id} className="relative rounded-lg h-max overflow-hidden bg-white shadow-sm border border-gray-100">
-              {/* foto */}
-              <div className="group overflow-hidden w-full object-contain">
-                <img
+            <SteepItem
+              key={item.id}
+              className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-sm"
+            >
+              <div className="group relative aspect-4/3 overflow-hidden">
+                <Image
                   src={item.image}
-                  alt="foto-product"
-                  className="w-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
+                  alt={item.title}
+                  fill
+                  quality={90}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
-              </div>
-
-              {/* peritilan dalm foto */}
-              <div className="absolute top-2 left-2 rounded-xl bg-primary-150 p-1 hover:opacity-95 cursor-pointer">
-                <h1 className="font-label font-medium text-[10px] text-[#FFFFFF]">
+                <span className="absolute left-3 top-3 rounded-full bg-primary-150 px-2.5 py-1 font-label text-xs font-medium text-white">
                   {item.type}
-                </h1>
+                </span>
               </div>
 
-              <div className="absolute top-2 right-2 rounded-full p-2 bg-[#FFFFFF]">
-                <img src="/landing-product-love.svg" alt="love" />
-              </div>
-
-              {/* isi  */}
-              <div className="p-6 bg-[#ffff] rounded-b-lg overflow-hidden h-max">
-                <h3 className="font-label font-bold text-[10px] text-primary-10">
-                  {item.location}
-                </h3>
-                <h1 className="font-headline font-bold text-[26px] text-primary-150">
+              <div className="flex flex-1 flex-col p-6">
+                <p className="font-label text-xs font-bold text-primary-10">{item.location}</p>
+                <h3 className="mt-1 font-headline text-2xl font-bold leading-tight text-primary-150">
                   {item.title}
-                </h1>
+                </h3>
 
-                {/* looping tags rasa */}
-                <div className="grid grid-cols-2 gap-3 mt-5">
-                  {item.tags.map((tag, index) => (
-                    <div
-                      key={index}
-                      className="bg-[#F5F3EF] rounded-xl p-1 flex items-center justify-center"
-                    >
-                      <h2 className="text-[#50453E] text-[13px] font-body truncate px-1">
-                        {tag}
-                      </h2>
-                    </div>
+                <ul className="mt-4 flex flex-wrap gap-1.5">
+                  {item.tags.map((tag) => (
+                    <li key={tag} className="rounded-full bg-primary-100 px-3 py-1 text-[13px] text-body">
+                      {tag}
+                    </li>
                   ))}
-                </div>
+                </ul>
 
                 <div className="mt-6">
-                  {/* Bagian Roast Level Bar */}
-                  <div className="mb-4">
-                    <div className="flex justify-between items-center text-[11px] text-primary-10 font-body mb-1.5">
-                      <span>{!item.isB2b ? "Roast Level" : ""}</span>
-                      <span
-                        className={`font-semibold text-primary-150 ${item.isB2b ? "italic" : ""}`}
-                      >
-                        {item.roastLabel}
-                      </span>
-                    </div>
-
-                    {/* Bar Tingkatan Roast Otomatis Sesuai Nilai Array */}
-                    <div className="flex gap-1">
-                      {Array.from({ length: 5 }, (_, i) => i + 1).map(
-                        (index) => (
-                          <div
-                            key={index}
-                            className={`h-1.5 flex-1 rounded-sm ${
-                              index <= item.roastLevel
-                                ? "bg-primary-150"
-                                : "bg-[#EAE7E0]"
-                            }`}
-                          />
-                        ),
-                      )}
-                    </div>
+                  <div className="mb-1.5 flex items-center justify-between text-xs text-primary-10">
+                    <span>{item.isB2b ? "Profil Sangrai" : "Roast Level"}</span>
+                    <span className={`font-semibold text-primary-150 ${item.isB2b ? "italic" : ""}`}>
+                      {item.isB2b ? "Sesuai Permintaan" : item.roastLabel}
+                    </span>
                   </div>
-
-                  {/* Bagian Harga Retail & Tombol Pesan */}
-                  <div className="flex items-center justify-between mt-5 pt-3 border-t border-gray-100">
-                    <div>
-                      <p className="text-[10px] text-gray-400 font-body">
-                        {item.isB2b ? "Harga Grosir" : "Harga Retail"}
-                      </p>
-                      <p className="text-[14px] font-bold text-primary-150 font-body">
-                        {item.price}
-                        <span className="text-[11px] font-normal text-gray-400">
-                          /{item.weight}
-                        </span>
-                      </p>
-                    </div>
-
-                    {/* Tombol Aksi Dinamis */}
-                    <a href="/">
-                      <button className=" cursor-pointer bg-primary-150 text-[#ffffff] text-[12px] font-bold font-body px-5 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow-sm hover:brightness-110 hover:shadow-md active:scale-95">
-                        <span className="tracking-wider">
-                          {item.isB2b ? "DETAIL" : "PESAN"}
-                        </span>
-                      </button>
-                    </a>
+                  <div
+                    className="flex gap-1"
+                    role="img"
+                    aria-label={`Roast level ${item.roastLevel} dari 5`}
+                  >
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <span
+                        key={i}
+                        className={`h-1.5 flex-1 rounded-sm ${i < item.roastLevel ? "bg-primary-150" : "bg-sand"}`}
+                      />
+                    ))}
                   </div>
                 </div>
+
+                <div className="mt-auto flex items-center justify-between border-t border-line pt-4">
+                  <div>
+                    <p className="text-xs text-primary-10">
+                      {item.isB2b ? "Harga Grosir" : "Harga Retail"}
+                    </p>
+                    <p className="text-sm font-bold text-primary-150">
+                      {item.price}
+                      <span className="text-xs font-normal text-primary-10">/{item.weight}</span>
+                    </p>
+                  </div>
+                  <Link
+                    href="/products-services"
+                    aria-label={`${item.isB2b ? "Detail" : "Pesan"} ${item.title}`}
+                    className="group/btn flex min-h-11 items-center gap-1.5 rounded-lg bg-primary-150 px-4 font-label text-xs font-bold tracking-wider text-white transition-colors hover:bg-brand-dark"
+                  >
+                    {item.isB2b ? "DETAIL" : "PESAN"}
+                    <ArrowRight className="size-3.5 transition-transform group-hover/btn:translate-x-0.5" aria-hidden />
+                  </Link>
+                </div>
               </div>
-            </div>
+            </SteepItem>
           ))}
-        </div>
+        </Steep>
       </div>
-    </>
+    </section>
   );
 }
