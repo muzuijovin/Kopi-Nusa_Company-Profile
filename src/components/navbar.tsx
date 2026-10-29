@@ -9,6 +9,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { ScrollProgress } from "./motion";
+import { NotificationBell } from "./notification-bell";
 
 const isActivePath = (pathname: string, path: string) =>
   path === "/" ? pathname === "/" : pathname.startsWith(path);
@@ -100,6 +101,8 @@ export function NavbarSection() {
               <Lock className="size-4" aria-hidden />
               CREATE BLOG
             </Link>
+
+            {isLoggedIn && <NotificationBell />}
 
             {isLoggedIn ? (
               <div className="dropdown dropdown-end">
